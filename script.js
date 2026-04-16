@@ -31,11 +31,11 @@
     if (isNaN(techVal) || isNaN(energyVal)) return;
 
     if (techVal < -2.5 && energyVal > 2.5) {
-      threatSpan.innerText = 'RED 🔴';
+      threatSpan.innerText = '🔴';
     } else if (techVal < 0 && energyVal > 0) {
-      threatSpan.innerText = 'ORANGE 🟠';
+      threatSpan.innerText = '🟠';
     } else {
-      threatSpan.innerText = 'YELLOW 🟡';
+      threatSpan.innerText = '🟡';
     }
   }
 
