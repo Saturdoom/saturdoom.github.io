@@ -46,7 +46,7 @@ body {
 /* header */
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: baseline;
   border-bottom: 2px dashed #4a8c3a;
   padding-bottom: 0.75rem;
