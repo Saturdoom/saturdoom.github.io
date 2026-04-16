@@ -67,15 +67,81 @@ body {
   color: #7cb05c;
 }
 
-.threat {
-  background: #0f200c;
-  padding: 0.3rem 1rem;
-  border-left: 4px solid #e0b03b;
-  font-weight: bold;
+/* DEFCON indicator - replaces .threat */
+.defcon-container {
+  display: flex;
+  gap: 0.5rem;
+  background: #0a1c05;
+  padding: 0.5rem 1rem;
+  border: 1px solid #3a7a2f;
+  border-radius: 4px;
 }
 
-.threat span {
-  color: #ffdd77;
+.defcon-level {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  border: 2px solid #2f6b2a;
+  background-color: #0a1a05;
+  color: #2f6b2a;
+  transition: all 0.2s ease;
+}
+
+/* Active level styles (DEFCON 5 to 1) */
+.defcon-level.active[data-level="5"] {
+  background-color: #1a5a1a;
+  border-color: #6bc84b;
+  color: #b3ff99;
+  box-shadow: 0 0 8px #6bc84b;
+}
+.defcon-level.active[data-level="4"] {
+  background-color: #2a6e3a;
+  border-color: #88cc44;
+  color: #ccffaa;
+  box-shadow: 0 0 8px #88cc44;
+}
+.defcon-level.active[data-level="3"] {
+  background-color: #6b6b1a;
+  border-color: #e0d43b;
+  color: #ffffaa;
+  box-shadow: 0 0 8px #e0d43b;
+}
+.defcon-level.active[data-level="2"] {
+  background-color: #8b4a1a;
+  border-color: #ffa055;
+  color: #ffcc99;
+  box-shadow: 0 0 8px #ffa055;
+}
+.defcon-level.active[data-level="1"] {
+  background-color: #8b1a1a;
+  border-color: #ff5555;
+  color: #ffaaaa;
+  box-shadow: 0 0 12px #ff5555;
+}
+
+/* Responsive: vertical on small screens */
+@media (max-width: 700px) {
+  .defcon-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .defcon-level {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.4rem;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
 }
 
 /* week stack */
@@ -190,7 +256,7 @@ body {
   color: #5a8749;
 }
 
-/* responsive */
+/* responsive table */
 @media (max-width: 700px) {
   .tracking-table th, .tracking-table td {
     font-size: 0.7rem;

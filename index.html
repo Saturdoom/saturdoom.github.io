@@ -14,8 +14,13 @@
         <h1>SATURDOOM</h1>
         <p>// weekly asset tracking · regime shift indicator //</p>
       </div>
-      <div class="threat">
-        ⚡ THREAT LEVEL: <span id="threatLevel">YELLOW</span> ⚡
+      <!-- DEFCON indicator container -->
+      <div class="defcon-container">
+        <div class="defcon-level" data-level="5">5</div>
+        <div class="defcon-level" data-level="4">4</div>
+        <div class="defcon-level" data-level="3">3</div>
+        <div class="defcon-level" data-level="2">2</div>
+        <div class="defcon-level" data-level="1">1</div>
       </div>
     </div>
 
@@ -50,22 +55,12 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById('navbar-placeholder').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Navbar load error:', error);
+        document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:red;">⚠️ NAVBAR NOT FOUND</div>';
       });
   </script>
   <script src="script.js"></script>
 </body>
 </html>
-<script>
-  fetch('navbar.html')
-    .then(response => {
-      if (!response.ok) throw new Error('navbar.html not found');
-      return response.text();
-    })
-    .then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-    })
-    .catch(error => {
-      console.error('Navbar load error:', error);
-      document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:red;">⚠️ NAVBAR NOT FOUND</div>';
-    });
-</script>
