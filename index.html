@@ -16,51 +16,45 @@
       </div>
     </div>
 
-    <!-- PANEL PRINCIPAL: DEFCON + fecha + tabla actual -->
+    <!-- PANEL PRINCIPAL -->
     <div class="defcon-panel">
-    <!-- 1. FECHA arriba a la izquierda -->
-    <div class="week-header current-date">🪖 WEEK 2026-04-19 · SCAN 04-19</div>
+      <div class="week-header current-date">🪖 WEEK 2026-04-17 · SCAN 04-17</div>
+      <div class="defcon-container">
+        <div class="defcon-level" data-level="5">5</div>
+        <div class="defcon-level" data-level="4">4</div>
+        <div class="defcon-level" data-level="3">3</div>
+        <div class="defcon-level" data-level="2">2</div>
+        <div class="defcon-level" data-level="1">1</div>
+      </div>
+      <div class="defcon-label">CURRENT THREAT LEVEL</div>
 
-    <!-- 2. SEMÁFORO (centrado) -->
-    <div class="defcon-container">
-      <div class="defcon-level" data-level="5">5</div>
-      <div class="defcon-level" data-level="4">4</div>
-      <div class="defcon-level" data-level="3">3</div>
-      <div class="defcon-level" data-level="2">2</div>
-      <div class="defcon-level" data-level="1">1</div>
+      <div class="mini-table-container">
+        <table class="tracking-table mini" id="currentWeekTable">
+          <thead>
+            <tr><th>ASSET</th><th>Perf W</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="asset">TECHNOLOGY</td><td class="up">+7.83% ↑</td></tr>
+            <tr><td class="asset">ENERGY</td><td class="down">-3.85% ↓</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="defcon-label">CURRENT THREAT LEVEL</div>
 
-    <!-- 3. TABLA Energy / Technology (centrada) -->
-    <div class="mini-table-container">
-      <table class="tracking-table mini" id="currentWeekTable">
-        <thead>
-          <tr><th>ASSET</th><th>Perf D</th><th>Perf W</th><th>Perf M</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="asset">ENERGY</td><td class="up">+0.9% ↑</td><td class="up">+5.1% ↑</td><td class="up">+15.3% ↑</td></tr>
-          <tr><td class="asset">TECHNOLOGY</td><td class="down">-1.9% ↓</td><td class="down">-4.1% ↓</td><td class="down">-5.8% ↓</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-    <!-- HISTORIAL DE SEMANAS ANTERIORES (se van apilando) -->
+    <!-- HISTORIAL -->
     <div id="weeksContainer">
-      <!-- Cada semana se copia como un .week-block, con su propia tabla de Energy/Technology -->
       <div class="week-block">
         <div class="week-header">🪖 WEEK 2026-04-12 · SCAN 04-12</div>
         <div class="mini-table-container">
           <table class="tracking-table mini">
-            <thead><tr><th>ASSET</th><th>Perf D</th><th>Perf W</th><th>Perf M</th></tr></thead>
+            <thead><tr><th>ASSET</th><th>Perf W</th></tr></thead>
             <tbody>
-              <tr><td class="asset">ENERGY</td><td class="up">+1.2% ↑</td><td class="up">+4.8% ↑</td><td class="up">+13.9% ↑</td></tr>
-              <tr><td class="asset">TECHNOLOGY</td><td class="down">-2.1% ↓</td><td class="down">-3.5% ↓</td><td class="down">-5.0% ↓</td></tr>
+              <tr><td class="asset">ENERGY</td><td class="up">+4.8% ↑</td></tr>
+              <tr><td class="asset">TECHNOLOGY</td><td class="down">-3.5% ↓</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <!-- Se pueden agregar más .week-block (más antiguas) abajo -->
     </div>
 
     <div class="sidebar">

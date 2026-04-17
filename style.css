@@ -74,7 +74,7 @@ body {
   color: #7cb05c;
 }
 
-/* DEFCON Panel (unifica todo) */
+/* DEFCON Panel */
 .defcon-panel {
   background: #0a1c05;
   border: 2px solid #3a7a2f;
@@ -83,7 +83,7 @@ body {
   margin: 2rem 0;
 }
 
-/* Fecha dentro del panel: alineada a la izquierda */
+/* Fecha dentro del panel */
 .defcon-panel .week-header.current-date {
   display: block;
   text-align: left;
@@ -96,7 +96,7 @@ body {
   width: fit-content;
 }
 
-/* Contenedor del semáforo: ocupa todo el ancho, distribución uniforme */
+/* Contenedor del semáforo: ocupa todo el ancho */
 .defcon-container {
   display: flex;
   justify-content: space-between;
@@ -108,7 +108,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Cada cuadrado: flexible, cuadrado, tamaño grande */
+/* Cada cuadrado del semáforo */
 .defcon-level {
   flex: 1;
   aspect-ratio: 1 / 1;
@@ -135,7 +135,7 @@ body {
   text-align: center;
 }
 
-/* Tabla mini (Energy/Technology) dentro del panel: mismo ancho que el semáforo */
+/* Mini tabla dentro del panel: mismo ancho que el semáforo, texto grande */
 .mini-table-container {
   width: 100%;
   margin-top: 1.5rem;
@@ -145,9 +145,31 @@ body {
   width: 100%;
   max-width: none;
   margin: 0 auto;
+  font-size: 1.4rem;
+  border-collapse: collapse;
+  table-layout: fixed; /* Fuerza el mismo ancho para todas las celdas */
 }
 
-/* Active level styles */
+.tracking-table.mini th,
+.tracking-table.mini td {
+  width: 50%; /* Cada columna ocupa la mitad */
+  font-size: 1.2rem;
+  padding: 12px 8px;
+  border: 1px solid #2b6320;
+  text-align: center;
+}
+
+.tracking-table.mini th {
+  background: #142d0e;
+  color: #caffb0;
+  text-transform: uppercase;
+}
+
+.tracking-table.mini td {
+  background: #051203;
+}
+
+/* Active level styles (DEFCON 5 to 1) */
 .defcon-level.active[data-level="5"] {
   background-color: #1a5a1a;
   border-color: #6bc84b;
@@ -204,7 +226,7 @@ body {
   font-weight: bold;
 }
 
-/* Tablas generales */
+/* Tablas generales (para el historial también aplica el estilo grande) */
 .tracking-table {
   width: 100%;
   border-collapse: collapse;
@@ -307,10 +329,25 @@ body {
     align-items: stretch;
     gap: 1rem;
   }
-  .tracking-table th, .tracking-table td {
-    font-size: 0.7rem;
-    padding: 5px 2px;
+  .tracking-table.mini {
+    font-size: 1rem;
   }
+  .tracking-table.mini th,
+  .tracking-table.mini td {
+    font-size: 0.9rem;
+    padding: 8px 4px;
+  }
+  /* La primera celda de cada fila (ASSET) la alineamos a la izquierda */
+.tracking-table.mini td:first-child,
+.tracking-table.mini th:first-child {
+  text-align: left;
+}
+
+/* La segunda celda (Perf W) la dejamos centrada */
+.tracking-table.mini td:last-child,
+.tracking-table.mini th:last-child {
+  text-align: center;
+}
   .logo h1 {
     font-size: 1.8rem;
   }
