@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SaturDoom · Archive</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles for archive cards */
+    .archive-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0a1c05;
+      border: 1px solid #3a7a2f;
+      border-radius: 8px;
+      padding: 0.8rem 1.5rem;
+      margin-bottom: 0.8rem;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .archive-card:hover {
+      background: #0f2a0a;
+      border-color: #6bc84b;
+    }
+    .archive-card .week-date {
+      font-weight: bold;
+      color: #b3ff99;
+      font-size: 1rem;
+    }
+    .archive-card .scan-date {
+      font-weight: bold;
+      color: #b3ff99;
+      font-size: 1rem;
+    }
+    .archive-card .arrow {
+      color: #94d47a;
+      font-size: 1.2rem;
+    }
+    .archive-card a {
+      text-decoration: none;
+      display: block;
+      width: 100%;
+    }
+    /* Override to make the whole card clickable via JS, but we'll wrap with <a> */
+  </style>
 </head>
 <body>
   <div class="crt">
@@ -19,7 +58,7 @@
     <div class="defcon-panel" style="min-height: auto;">
       <div class="carousel-week-content" style="text-align: left;">
         <h2 class="week-header" style="margin-bottom: 1.5rem;">📅 AVAILABLE WEEKS</h2>
-        <div id="archiveGrid" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+        <div id="archiveGrid">
           <!-- cards will be inserted here -->
         </div>
       </div>
@@ -44,11 +83,14 @@
     weeksData.forEach(week => {
       const card = document.createElement('div');
       card.className = 'archive-card';
-      card.style.cssText = 'background: #0a1c05; border: 1px solid #3a7a2f; border-radius: 8px; padding: 1rem; min-width: 200px; text-align: center;';
+      // Make whole card clickable via JavaScript
+      card.addEventListener('click', () => {
+        window.location.href = `index.html?week=${week.date}`;
+      });
       card.innerHTML = `
-        <div class="week-header" style="margin-bottom: 0.5rem; display: inline-block;">🪖 WEEK ${week.date}</div>
-        <div style="margin: 0.5rem 0;">SCAN: ${week.scan}</div>
-        <a href="index.html?week=${week.date}" style="color: #94d47a; text-decoration: none; border: 1px solid #6bc84b; padding: 0.2rem 1rem; display: inline-block; margin-top: 0.5rem;">VIEW →</a>
+        <div class="week-date">🪖 WEEK ${week.date}</div>
+        <div class="scan-date">SCAN: ${week.scan}</div>
+        <div class="arrow">→</div>
       `;
       grid.appendChild(card);
     });
