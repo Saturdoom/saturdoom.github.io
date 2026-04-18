@@ -112,8 +112,8 @@ body {
   font-family: 'Courier New', monospace;
   font-size: 4.5rem;
   font-weight: bold;
-  color: var(--text-green);
-  background: var(--bg-dark);
+  color: var(--border-green);
+  background: transparent;
   display: inline-block;
   padding: 0 0 1rem 0;
   border-radius: 8px;
@@ -121,9 +121,9 @@ body {
 }
 .time-block {
   padding: 0.5rem 1rem;
-  background: var(--panel-bg);
+  background: var(--text-green);
   border-radius: 1rem;
-  box-shadow: inset .1rem .1rem 1rem var(--up-green);
+  box-shadow: inset .1rem .1rem 1rem var(--bg-dark);
 }
 .giro-direction canvas {
   display:block;
@@ -584,6 +584,6 @@ body::before {
   }
 }
 
-.debug-border {
+/*.debug-border {
   border: 2px solid red;
-}
+}*/
