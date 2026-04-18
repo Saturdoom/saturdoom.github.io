@@ -97,7 +97,6 @@
   prevBtn.addEventListener('click', prevWeek);
   nextBtn.addEventListener('click', nextWeek);
 
-  // Leer parámetro week de la URL y ajustar currentIndex
   function getIndexByDate(dateStr) {
     return weeksData.findIndex(week => week.date === dateStr);
   }
@@ -111,7 +110,7 @@
   renderWeek(currentIndex);
 
   // ============================================================
-  // GIRO PANEL (Brent, WTI, USD)
+  // GIRO PANEL (Brent, WTI, USD) con gráfico de aguja semicircular
   // ============================================================
   const giroData = [
     { date: "2026-04-13", scan: "04-18",
@@ -127,12 +126,105 @@
   const giroTableBody = document.getElementById('giroTableBody');
   const prevGiroBtn = document.getElementById('prevGiroBtn');
   const nextGiroBtn = document.getElementById('nextGiroBtn');
-  const giroArrow = document.getElementById('giroArrow');
 
   function getGiroDirection(brent_w, wti_w, usd_w) {
     if (brent_w > 1.0 && usd_w > 0.5 && wti_w < -0.5) return 'right';
     if (brent_w < -0.5 && usd_w < -0.5 && wti_w > 1.0) return 'left';
     return 'up';
+  }
+
+  // Dibuja el semicírculo rotado 90° antihorario, sin recortes
+  function drawGauge(direction) {
+    const canvas = document.getElementById('gaugeCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    
+    ctx.clearRect(0, 0, width, height);
+    ctx.save();
+    // Desplazar al centro en x, y desplazar hacia abajo en y, y rotar -90° counterclockwise
+    const yOffset = 85;
+    ctx.translate(width / 2, height / 2 + yOffset);
+    ctx.rotate(-Math.PI / 2);
+    
+    const radius = Math.min(width, height) * 0.85;
+    const centerX = 0;
+    const centerY = 0;
+    const startAngle = -Math.PI / 2;
+    const sweep = Math.PI;
+    const sectorAngle = sweep / 3;
+    
+    const colors = {
+      left: '#88ff88',   // TECH
+      center: '#ffff88', // neutral
+      right: '#ff8888'   // ENERGY
+    };
+    
+    // Sector izquierdo (TECH)
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
+    ctx.lineTo(centerX, centerY);
+    ctx.fillStyle = colors.left;
+    ctx.fill();
+    ctx.strokeStyle = '#3a7a2f';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    
+    // Sector central (neutral)
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
+    ctx.lineTo(centerX, centerY);
+    ctx.fillStyle = colors.center;
+    ctx.fill();
+    ctx.stroke();
+    
+    // Sector derecho (ENERGY)
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
+    ctx.lineTo(centerX, centerY);
+    ctx.fillStyle = colors.right;
+    ctx.fill();
+    ctx.stroke();
+    
+    // Borde exterior
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle, startAngle + sweep);
+    ctx.strokeStyle = '#6bc84b';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Ángulo de la aguja
+    let angle;
+    if (direction === 'left') {
+      angle = startAngle + sectorAngle / 2;
+    } else if (direction === 'right') {
+      angle = startAngle + 2 * sectorAngle + sectorAngle / 2;
+    } else {
+      angle = startAngle + sectorAngle + sectorAngle / 2;
+    }
+    
+    const needleLength = radius * 0.9;
+    const needleX = Math.cos(angle) * needleLength;
+    const needleY = Math.sin(angle) * needleLength;
+    
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(needleX, needleY);
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    
+    // Círculo central
+    ctx.beginPath();
+    ctx.arc(0, 0, 6, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b3ff99';
+    ctx.fill();
+    ctx.strokeStyle = '#0a1c05';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    
+    ctx.restore();
   }
 
   function renderGiro(index) {
@@ -158,9 +250,7 @@
     }).join('');
 
     const direction = getGiroDirection(w.brent_w, w.wti_w, w.usd_w);
-    giroArrow.className = `dir-arrow arrow-${direction}`;
-    giroArrow.innerText = direction === 'left' ? '←' : (direction === 'right' ? '→' : '↑');
-
+    drawGauge(direction);
     updateGiroButtons();
   }
 
@@ -198,7 +288,6 @@
   prevGiroBtn.addEventListener('click', prevGiro);
   nextGiroBtn.addEventListener('click', nextGiro);
 
-  // Ajustar currentGiroIndex según el mismo parámetro week
   function getGiroIndexByDate(dateStr) {
     return giroData.findIndex(week => week.date === dateStr);
   }
