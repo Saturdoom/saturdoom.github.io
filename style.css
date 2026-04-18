@@ -9,6 +9,7 @@
 
 /* ---------- VARIABLES ---------- */
 :root {
+  --black: #000000;
   --bg-dark: #010501;
   --panel-bg: #0a1c05;
   --border-green: #3a7a2f;
@@ -34,9 +35,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   background: var(--bg-dark);
-  /*border: 2px solid #2f6b2a;*/
-  /*padding: 1.5rem 1rem;*/
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
 }
 
 /* ---------- NAVBAR ---------- */
@@ -65,21 +64,21 @@ body {
 /* ---------- HEADER / LOGO ---------- */
 .header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
+  padding: 1rem;
   border-bottom: 2px dashed #4a8c3a;
-  padding-bottom: 0.75rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 .logo {
   text-align: center;
 }
 .logo h1 {
   display: inline-block;
-  font-size: 5rem;
-  font-weight: normal;
-  letter-spacing: 5px;
+  font-size: 5.5rem;
+  font-weight: bolder;
+  letter-spacing: 0;
   color: var(--text-green);
   text-shadow: 0 0 3px #1c5e15;
 }
@@ -90,37 +89,41 @@ body {
 
 /* COUNTDOWN TIMER (retro 80s) - colores invertidos */
 .countdown-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
-  margin: 1.5rem 0;
-  background: var(--panel-bg);        /* mismo fondo que defcon-panel */
-  border: 2px solid var(--border-green);  /* mismo borde que los paneles */
-  border-radius: 1rem;
-  padding: 1rem 0;
+  padding: 0 0 0 0;
+  width: 100%;
+  /*min-height: 460px;*/
+  /*background: var(--panel-bg);*/
+  /*border: 2px solid var(--border-green);*/
+  /*border-radius: 1rem;*/
+  margin: 0;
 }
 .countdown-label {
   font-size: 1rem;
   letter-spacing: 0.5rem;
   color: #7cb05c;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 .countdown-timer {
   font-family: 'Courier New', monospace;
-  font-size: 3rem;
+  font-size: 4.5rem;
   font-weight: bold;
   color: var(--text-green);
-  /*background: #000000;        /* fondo negro para el conjunto de dígitos */
+  background: var(--bg-dark);
   display: inline-block;
   padding: 0 0 1rem 0;
-  /*border: 2px solid #6bc84b;*/
   border-radius: 8px;
-  letter-spacing: 5px;
+  letter-spacing: auto;
 }
 .time-block {
-  background: var(--bg-dark);        /* negro verdoso muy oscuro para cada dígito */
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  box-shadow: inset 0 0 5px #1c5e15;
+  padding: 0.5rem 1rem;
+  background: var(--panel-bg);
+  border-radius: 1rem;
+  box-shadow: inset .1rem .1rem 1rem var(--up-green);
 }
 .giro-direction canvas {
   display:block;
@@ -136,17 +139,17 @@ body {
 /* ---------- COMMON PANEL STYLES (DEFCON & GIRO) ---------- */
 .defcon-panel,
 .giro-panel {
-  background: var(--panel-bg);
-  border: 2px solid var(--border-green) ;
-  border-radius: 1rem;
-  padding: 1rem;
-  /*margin: 2rem 0;*/
-  /* equal height for both panels */
-  width: 100%;
-  min-height: 460px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  min-height: 460px;
+  padding: 1rem;
+  /*margin: 2rem 0;*/
+  /* equal height for both panels */
+  background: var(--panel-bg);
+  border: 2px solid var(--border-green) ;
+  border-radius: 1rem;  
 }
 
 /* carousel container (shared) */
@@ -450,7 +453,7 @@ body {
   justify-content: center;
   align-items: baseline;
   border-top: 2px dashed #4a8c3a;
-  padding: 5.75rem 0 0 0;
+  padding: 3rem 0 0 0;
   margin-bottom: 2rem;
   flex-wrap: wrap;
 }
@@ -547,15 +550,15 @@ body::before {
 /* ---------- TWO-COLUMN LAYOUT ---------- */
 .two-column-grid {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: stretch;
-  margin: 2rem 0;
+  margin: 0 0 1.5rem 0;
 }
 .left-column {
   display:flex;
   flex-direction: column;
   flex: 3; /* 75% ancho */
-  gap: 2rem;
+  gap: 1.5rem;
 }
 .right-column {
   flex: 1; /* 25% ancho */
@@ -581,6 +584,6 @@ body::before {
   }
 }
 
-/*.debug-border {
+.debug-border {
   border: 2px solid red;
-}*/
+}
