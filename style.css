@@ -422,18 +422,19 @@ body {
   padding: 0.7rem;
 }
 .box h3 {
-  font-size: 0.85rem;
+  font-size: 1rem;
   border-bottom: 1px solid #548f3f;
   display: inline-block;
   margin-bottom: 0.6rem;
 }
 .box p, .box a {
-  font-size: 0.7rem;
+  font-size: 0.83rem;
   line-height: 1.3;
 }
 .box a {
   display: block;
   color: #94d47a;
+  font-weight: bold;
   text-decoration: none;
 }
 .footer {
