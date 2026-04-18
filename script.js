@@ -3,7 +3,7 @@
   // DEFCON PANEL (Energy & Technology)
   // ============================================================
   const weeksData = [
-    { date: "2026-04-13", scan: "04-18", energy: 7.73, tech: -3.85 },
+    { date: "2026-04-13", scan: "04-18", energy: -3.85, tech: 7.73},
     // Agrega más semanas aquí (más recientes primero)
   ];
 

@@ -71,7 +71,7 @@
     fetch('navbar.html')
       .then(response => response.text())
       .then(data => document.getElementById('navbar-placeholder').innerHTML = data)
-      .catch(() => document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:red;">⚠️ NAVBAR NOT FOUND</div>');
+      .catch(() => document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:white;">⚠️ NAVBAR NOT FOUND - VISIT saturdoom.github.io</div>');
 
     // Data must match the same weeks used in script.js
     const weeksData = [
