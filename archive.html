@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaturDoom · Archive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="crt">
+    <div id="navbar-placeholder"></div>
+    <div class="header">
+      <div class="logo">
+        <h1>SATURDOOM</h1>
+        <p>// weekly archive //</p>
+      </div>
+    </div>
+
+    <div class="defcon-panel" style="min-height: auto;">
+      <div class="carousel-week-content" style="text-align: left;">
+        <h2 class="week-header" style="margin-bottom: 1.5rem;">📅 AVAILABLE WEEKS</h2>
+        <div id="archiveGrid" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+          <!-- cards will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">† SATURDOOM · weekly archive †</div>
+  </div>
+
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('navbar-placeholder').innerHTML = data)
+      .catch(() => document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:red;">⚠️ NAVBAR NOT FOUND</div>');
+
+    // Data must match the same weeks used in script.js
+    const weeksData = [
+      { date: "2026-04-13", scan: "04-18", energy: 7.73, tech: -3.85 },
+      // Add more weeks here as they become available
+    ];
+
+    const grid = document.getElementById('archiveGrid');
+    weeksData.forEach(week => {
+      const card = document.createElement('div');
+      card.className = 'archive-card';
+      card.style.cssText = 'background: #0a1c05; border: 1px solid #3a7a2f; border-radius: 8px; padding: 1rem; min-width: 200px; text-align: center;';
+      card.innerHTML = `
+        <div class="week-header" style="margin-bottom: 0.5rem; display: inline-block;">🪖 WEEK ${week.date}</div>
+        <div style="margin: 0.5rem 0;">SCAN: ${week.scan}</div>
+        <a href="index.html?week=${week.date}" style="color: #94d47a; text-decoration: none; border: 1px solid #6bc84b; padding: 0.2rem 1rem; display: inline-block; margin-top: 0.5rem;">VIEW →</a>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

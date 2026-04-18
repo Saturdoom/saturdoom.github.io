@@ -64,7 +64,6 @@
   }
 
   function updateDefconButtons() {
-    // Botón anterior (izquierda)
     if (currentIndex === 0) {
       prevBtn.setAttribute('disabled', 'disabled');
       prevBtn.classList.add('disabled');
@@ -72,7 +71,6 @@
       prevBtn.removeAttribute('disabled');
       prevBtn.classList.remove('disabled');
     }
-    // Botón siguiente (derecha)
     if (currentIndex === weeksData.length - 1) {
       nextBtn.setAttribute('disabled', 'disabled');
       nextBtn.classList.add('disabled');
@@ -98,6 +96,18 @@
 
   prevBtn.addEventListener('click', prevWeek);
   nextBtn.addEventListener('click', nextWeek);
+
+  // Leer parámetro week de la URL y ajustar currentIndex
+  function getIndexByDate(dateStr) {
+    return weeksData.findIndex(week => week.date === dateStr);
+  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const weekParam = urlParams.get('week');
+  if (weekParam) {
+    const idx = getIndexByDate(weekParam);
+    if (idx !== -1) currentIndex = idx;
+  }
+
   renderWeek(currentIndex);
 
   // ============================================================
@@ -187,5 +197,15 @@
 
   prevGiroBtn.addEventListener('click', prevGiro);
   nextGiroBtn.addEventListener('click', nextGiro);
+
+  // Ajustar currentGiroIndex según el mismo parámetro week
+  function getGiroIndexByDate(dateStr) {
+    return giroData.findIndex(week => week.date === dateStr);
+  }
+  if (weekParam) {
+    const giroIdx = getGiroIndexByDate(weekParam);
+    if (giroIdx !== -1) currentGiroIndex = giroIdx;
+  }
+
   renderGiro(currentGiroIndex);
 })();
