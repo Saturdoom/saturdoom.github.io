@@ -161,6 +161,12 @@
       right: '#ff8888'   // ENERGY
     };
     
+    // Configurar sombra para los sectores
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = 'rgba(100, 100, 100, 0.6)';
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 1;
+
     // Sector izquierdo (TECH)
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
@@ -194,6 +200,12 @@
     ctx.lineWidth = 2;
     ctx.stroke();
     
+    // Restaurar sombras antes de dibujar la aguja
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+
     // Ángulo de la aguja
     let angle;
     if (direction === 'left') {
@@ -208,21 +220,26 @@
     const needleX = Math.cos(angle) * needleLength;
     const needleY = Math.sin(angle) * needleLength;
     
+    ctx.shadowOffsetX = 4;   // desplazamiento derecha
+    ctx.shadowOffsetY = 1;   // desplazamiento abajo
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = 'rgba(100, 100, 100, 0.6)';
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(needleX, needleY);
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 3;
     ctx.stroke();
+    ctx.shadowBlur = 0; // restaurar
     
     // Círculo central
     ctx.beginPath();
     ctx.arc(0, 0, 6, 0, 2 * Math.PI);
     ctx.fillStyle = '#b3ff99';
     ctx.fill();
-    ctx.strokeStyle = '#0a1c05';
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    //ctx.strokeStyle = '#0a1c05';
+    //ctx.lineWidth = 1;
+    //ctx.stroke();
     
     ctx.restore();
   }
