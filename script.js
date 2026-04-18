@@ -15,10 +15,10 @@
   const nextBtn = document.getElementById('nextWeekBtn');
 
   function getTrendClass(currentVal, prevVal) {
-    if (prevVal === undefined) return 'neutral';
+    if (prevVal === undefined) return 'uncertain';
     if (currentVal > prevVal) return 'up';
     if (currentVal < prevVal) return 'down';
-    return 'neutral';
+    return 'uncertain';
   }
 
   function renderWeek(index) {
@@ -157,7 +157,7 @@
     
     const colors = {
       left: '#88ff88',   // TECH
-      center: '#ffff88', // neutral
+      center: '#ffff88', // UNCERTAIN
       right: '#ff8888'   // ENERGY
     };
     
@@ -171,7 +171,7 @@
     ctx.lineWidth = 1;
     ctx.stroke();
     
-    // Sector central (neutral)
+    // Sector central (UNCERTAIN)
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
     ctx.lineTo(centerX, centerY);
@@ -238,8 +238,8 @@
       { name: "USD",   w: w.usd_w,   m: w.usd_m }
     ];
     giroTableBody.innerHTML = assets.map(a => {
-      const wClass = a.w > 0 ? 'up' : (a.w < 0 ? 'down' : 'neutral');
-      const mClass = a.m > 0 ? 'up' : (a.m < 0 ? 'down' : 'neutral');
+      const wClass = a.w > 0 ? 'up' : (a.w < 0 ? 'down' : 'uncertain');
+      const mClass = a.m > 0 ? 'up' : (a.m < 0 ? 'down' : 'uncertain');
       return `
         <tr>
           <td class="asset">${a.name}</td>
