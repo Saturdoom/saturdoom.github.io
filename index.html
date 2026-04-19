@@ -35,30 +35,34 @@
 
         <!-- Panel de Giro -->
         <div class="giro-panel debug-border">
-          <div class="carousel-container">
+          <div class="carousel-container debug-border">
             
-            <button class="carousel-btn prev" id="prevGiroBtn">◀</button>
+            <button class="carousel-btn prev debug-border" id="prevGiroBtn">◀</button>
 
-            <div class="carousel-week-content">
+            <div class="carousel-week-contenta debug-border">
 
               <div class="week-header current-date" id="giroDateHeader"></div>
 
               <div class="giro-direction">
                 <div class="giro-graphic">
-                <canvas id="gaugeCanvas" class="debug-border"></canvas>
-                <span class="dir-label left">TECH - UNCERTAIN - ENERGY</span>
-                <!--<span class="dir-label right">ENERGY</span>-->
+                  <canvas id="gaugeCanvas" class="debug-border"></canvas>
+                  <div class="giro-labels">
+                    <span class="dir-label">TECH</span>
+                    <span class="dir-label">UNCERTAIN</span>
+                    <span class="dir-label">ENERGY</span>
+                  </div>
                 </div>
               </div>
+              <div class="defcon-label debug-border"><strong>REGIME SHIFT EARLY WARNING</strong></div>
               
-              <div class="defcon-label"><strong>REGIME SHIFT EARLY WARNING</strong></div>
-              <div class="giro-table-container">
+              <div class="giro-table-container debug-border">
                 <table class="tracking-table mini" id="giroTable">
                   <thead><tr><th>ASSET</th><th>Perf W</th><th>Perf M</th></tr></thead>
                   <tbody id="giroTableBody"></tbody>
                 </table>
               </div>
-              <div class="defcon-label"><strong>REGIME SHIFT FORECAST LOGIC</strong></div>
+              <div class="defcon-label debug-border"><strong>REGIME SHIFT FORECAST LOGIC</strong></div>
+              
               <div class="table-label">
                 <div>TECH ←: no imminent shift. Calm.</div>
                 <div>↑ (MIXED): uncertain signals.</div>
@@ -66,42 +70,54 @@
                 <div>Divergence (Brent↑, USD↑, WTI↓) predicts the next major capital rotation from Tech toward Energy, and a potential global crisis: oil and food shortages, price spikes, layoffs, riots, and a stock market crash.</div>
               </div>
             </div>
-            <button class="carousel-btn next" id="nextGiroBtn">▶</button>
+            <button class="carousel-btn next debug-border" id="nextGiroBtn">▶</button>
           </div>
         </div>
 
         <!-- Panel DEFCON -->
         <div class="defcon-panel">
+
           <div class="carousel-container">
+
             <button class="carousel-btn prev" id="prevWeekBtn">◀</button>
-            <div class="carousel-week-content">
-              <div class="week-header current-date" id="weekDateHeader"></div>
-              <div class="defcon-container">
+
+            <div class="carousel-week-contentb">
+
+              <div class="week-header current-date debug-border" id="weekDateHeader"></div>
+
+              <div class="defcon-container debug-border">
                 <div class="defcon-level" data-level="5">5</div>
                 <div class="defcon-level" data-level="4">4</div>
                 <div class="defcon-level" data-level="3">3</div>
                 <div class="defcon-level" data-level="2">2</div>
                 <div class="defcon-level" data-level="1">1</div>
               </div>
-              <div class="defcon-label"><strong>CURRENT THREAT LEVEL</strong></div>
-              <div class="mini-table-container">
+              
+              <div class="table-label">
+                <div>DEFCON level (1–5) is determined by comparing both values:</div>
+                <div>🟥 DEFCON 1: Tech < -2.5% AND Energy > +2.5% (severe divergence)</div>
+                <div>🟧 DEFCON 2: Tech < 0% AND Energy > 0% (moderate divergence)</div>
+                <div>🟨 DEFCON 3: Tech < 0% AND Energy < 0% (both negative)</div>
+                <div>🟦 DEFCON 4: Tech > 0% AND Energy < 0% (calm)</div>
+                <div>🟩 DEFCON 5: all other cases (peace / low threat)</div>
+                <div>Cell colors (green/red/gray) indicate trend vs previous week, not the threat level.</div>
+              </div>
+
+              <div class="defcon-label debug-border"><strong>CURRENT THREAT LEVEL</strong></div>
+
+              
+              <div class="mini-table-container debug-border">
                 <table class="tracking-table mini" id="weekTable">
                   <thead><tr><th>ASSET</th><th>Perf W</th></tr></thead>
                   <tbody id="weekTableBody"></tbody>
                 </table>
-                <div class="defcon-label"><strong>THREAT LEVEL LOGIC:</strong></div>
-                <div class="table-label">
-                  <div>Table shows weekly performance (% change) of Energy and Technology sectors.
-                  <div>DEFCON level (1–5) is determined by comparing both values:</div>
-                  <div>🟥 DEFCON 1: Tech < -2.5% AND Energy > +2.5% (severe divergence)</div>
-                  <div>🟧 DEFCON 2: Tech < 0% AND Energy > 0% (moderate divergence)</div>
-                  <div>🟨 DEFCON 3: Tech < 0% AND Energy < 0% (both negative)</div>
-                  <div>🟦 DEFCON 4: Tech > 0% AND Energy < 0% (calm)</div>
-                  <div>🟩 DEFCON 5: all other cases (peace / low threat)</div>
-                  Cell colors (green/red/gray) indicate trend vs previous week, not the threat level.</div>
-                </div>
               </div>
+              <div>Table shows weekly performance (% change) of Energy and Technology sectors.</div>
+              
+              <div class="defcon-label debug-border"><strong>TABLE</strong></div>
+
             </div>
+
             <button class="carousel-btn next" id="nextWeekBtn">▶</button>
           </div>
         </div>
