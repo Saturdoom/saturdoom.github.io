@@ -526,49 +526,57 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  /*aspect-ratio: 1/1;*/
-  text-align: center;
-  padding: 1rem;
-  /*min-height: 460px;*/
-  /*background: var(--panel-bg);*/
-  /*border: 2px solid var(--border-green);*/
-  /*border-radius: 1rem;*/
-  margin: 0;
-  background-color: var(--console-panel-medium);
-  border: 2px solid var(--console-panel-light);
-  border-radius: 1rem;
-  box-shadow: 3px 3px 10px var(--bg-dark);
-}
-.countdown-timer {
-  display: flex;
-  flex-direction: column;
-  /*aspect-ratio: 1/1; */ 
-  justify-content: space-between;
   gap: 1rem;
+  text-align: center;
+  margin: 0;
+  /*background-color: var(--console-panel-medium);*/
+  /*border: 2px solid var(--console-panel-light);*/
+  /*border-radius: 1rem;*/
+  /*box-shadow: 3px 3px 10px var(--bg-dark);*/
+}
+.time-block {
+  width: 100%;
+  padding: 0.5rem 0;
   font-family: 'Courier New', monospace;
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: auto;
   color: var(--bg-dark);
-  /*border: 2px solid var(--border-green);*/
-
-}
-.time-block {
-  padding: 0.5rem 1rem;
   background: var(--text-green);
   border-radius: 1rem;
   box-shadow: inset .1rem .1rem 1rem var(--bg-dark);
-  /*margin: 3rem 0 0 0;*/
+  margin: 0;
 }
-.countdown-label {
+.countdown-label, .alerts-label, .prepper-label, .recommended-label {
   font-size: 1rem;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0;
   color: var(--console-panel-light);
   text-transform: uppercase;
+  padding: .25rem .5rem;
   /*margin: 1rem 0 0 0;*/
   background-color: var(--panel-bg);
 }
 
+
+/* COUNTDOWN TIMER (retro 80s) - colores invertidos */
+.alerts-container, .alerts-container, .prepper-container, .recommended-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  /*aspect-ratio: 1/1;*/
+  text-align: center;
+  padding: 0 .5rem 1rem 0;
+  /*min-height: 460px;*/
+  /*background: var(--panel-bg);*/
+  /*border: 2px solid var(--border-green);*/
+  /*border-radius: 1rem;*/
+  margin: 0;
+  /*background-color: var(--console-panel-medium);/*
+  /*border: 2px solid var(--console-panel-light);/*
+  /*border-radius: 1rem;*
+  /*box-shadow: 3px 3px 10px var(--bg-dark);*/
+}
 .box {
   flex: 1;
   text-align: justify;
