@@ -19,6 +19,7 @@
   --down-red: #ff7b7b;
   --neutral-grey: #c9c97a;
   --dashed-green: #4a8c3a;
+  --countdown-label: #7cb05c;
 
 }
 
@@ -68,24 +69,32 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
-  padding: 1rem;
+  padding: 1.5rem;
   border-bottom: 2px dashed var(--border-green);
   /*margin-bottom: 1.5rem;*/
 }
 .logo {
   text-align: center;
+  width: 100%;
+  /*border: 2px solid red;*/
 }
 .logo h1 {
   display: inline-block;
-  font-size: 5.5rem;
+  font-size: 6.1rem;
   font-weight: bolder;
+  position: relative;
+  left: -1px;
+  text-indent: -6px;
   letter-spacing: 0;
   color: var(--text-green);
   text-shadow: 0 0 3px #1c5e15;
+  /*border: 2px solid cyan;*/
 }
 .logo p {
   font-size: 1rem;
-  color: #7cb05c;
+  font-weight: bold;
+  text-transform: uppercase; 
+  color: var(--text-green);
 }
 
 /* COUNTDOWN TIMER (retro 80s) - colores invertidos */
@@ -132,7 +141,7 @@ body {
 .countdown-label {
   font-size: 1rem;
   letter-spacing: 0.5rem;
-  color: #7cb05c;
+  color: var(--text-green);
   text-transform: uppercase;
   /*margin: 1rem 0 0 0;*/
 }
@@ -486,10 +495,7 @@ body {
 .footerIn {
   text-align: center;
 }
-.logo p {
-  font-size: 1rem;
-  color: #7cb05c;
-}
+
 
 .box {
   position: relative;
@@ -532,9 +538,7 @@ body {
     align-items: stretch;
     /*gap: 1rem;*/
   }
-  .logo h1 {
-    font-size: 1.8rem;
-  }
+
 
   .defcon-panel .week-header.current-date,
   .giro-panel .week-header.current-date {
