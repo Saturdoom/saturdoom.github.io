@@ -541,13 +541,13 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: auto;
-  color: var(--bg-dark);
-  background: var(--text-green);
+  color: var(--text-green);
+  background: var(--console-panel-light);
   border-radius: 1rem;
-  box-shadow: inset .1rem .1rem 1rem var(--bg-dark);
+  box-shadow: 0 0 .1rem  var(--bg-dark);
   margin: 0;
 }
-.countdown-label, .alerts-label, .prepper-label, .recommended-label {
+.countdown-label, .alerts-label, .prepper-label, .links-label {
   font-size: 1rem;
   letter-spacing: 0;
   color: var(--console-panel-light);
@@ -559,7 +559,7 @@ body {
 
 
 /* COUNTDOWN TIMER (retro 80s) - colores invertidos */
-.alerts-container, .alerts-container, .prepper-container, .recommended-container {
+.alerts-container, .alerts-container, .prepper-container, .links-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -577,6 +577,7 @@ body {
   /*border-radius: 1rem;*
   /*box-shadow: 3px 3px 10px var(--bg-dark);*/
 }
+
 .box {
   flex: 1;
   text-align: justify;
@@ -603,23 +604,7 @@ body {
 .box {
   position: relative;
 }
-/*.box[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--bg-dark);
-  color: var(--text-green);
-  padding: 0.3rem 0.6rem;
-  border: 1px solid #6bc84b;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  white-space: nowrap;
-  z-index: 100;
-  margin-bottom: 8px;
-  font-family: 'Courier New', monospace;
-}*/
+
 [data-tooltip] {
   position: relative;  /* necesario para el posicionamiento absoluto */
 }
