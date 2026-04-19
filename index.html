@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="crt debug-border">
+  <div class="panel debug-border">
     <div id="navbar-placeholder" class="debug-border"></div>
     <div class="header debug-border">
       <div class="logo">
@@ -21,21 +21,9 @@
       <!-- COLUMNA IZQUIERDA (paneles) -->
       <div class="left-column">
 
-        <!-- COUNTDOWN TIMER (retro 80s style) 
-        <div class="countdown-container debug-border">
-          <div class="countdown-timer" id="countdownTimer">
-            <div class="time-block">
-              <span id="hours">00</span>:
-              <span id="minutes">00</span>:
-              <span id="seconds">00</span>
-            </div>
-          </div>
-          <div class="countdown-label"><strong>UPDATE COUNTDOWN</strong></div>
-        </div>-->
-
         <!-- Panel de Giro -->
         <div class="giro-panel debug-border">
-          <div class="carousel-container debug-border">
+          <div class="carousel-container scanline debug-border">
             
             <button class="carousel-btn prev debug-border" id="prevGiroBtn">◀</button>
 
@@ -139,10 +127,9 @@
               <div class="countdown-label"><strong>Next Update Countdown</strong></div>
             </div>
           </div>
-
-
-          <div class="box" title="Latest geopolitical alerts">
-            <h3>ALERTS</h3>
+          <!-- ALERTS -->
+          <div class="box" data-tooltip="Latest Geopolitical Alerts">
+            <h3>Alerts</h3>
             <p style="text-decoration: none; text-transform: uppercase;">
               <a href="https://www.wsj.com/livecoverage/iran-war-us-talks-2026" target="_blank">[04-19] Tehran’s Top Negotiator Says Iran and U.S. Are Far From Deal</a><br>
               <a href="https://www.marketwatch.com/story/most-u-s-farmers-cant-afford-all-the-fertilizer-they-need-this-year-opening-the-strait-of-hormuz-comes-too-late-0aa72790?g=a9bf8968-18a6-4c33-a418-5f17c06d97a6&mod=mw_rss_bulletins" target="_blank">[04-17] Most U.S. farmers can’t afford all the fertilizer they need this year. Opening the Strait of Hormuz comes too late</a><br>
@@ -151,24 +138,21 @@
               
             </p>
           </div>
-          <div class="box" title="Content under construction">
-            <h3>PREPPER</h3>
+          <div class="box" data-tooltip="Content under construction">
+            <h3>Prepper</h3>
             <p>WATER: 1G/DAY · ROTATE CANS Q2<br>FUEL STABILIZER · PHYSICAL GOLD</p>
           </div>
-          <div class="box" title="Recommended lectures">
+          <div class="box" data-tooltip="Recommended lectures">
             <h3>LINKS</h3>
-            <a href="https://www.zerohedge.com/">ZeroHedge</a>
-            <a href="https://shtfplan.net">SHTFplan</a>
-            <a href="https://thetranscript.substack.com">The Transcript (Substack)</a>
+            <p>
+              <a href="https://www.zerohedge.com/">ZeroHedge</a>
+              <a href="https://shtfplan.net">SHTFplan</a>
+              <a href="https://thetranscript.substack.com">The Transcript (Substack)</a>
+            </p>
           </div>
         </div>
       </div>
     </div>
-    
-
-
-
-
 
     <div class="footer">
       <div class="footerIn">
