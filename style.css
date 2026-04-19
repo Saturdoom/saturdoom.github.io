@@ -146,7 +146,7 @@ body {
   /*margin: 2rem 0;*/
   /* equal height for both panels */
   min-height: 944px;
-  max-height: 944px;
+  max-height: 844px;
   background: var(--panel-bg);
   border: 2px solid var(--border-green) ;
   border-radius: 1rem;  
