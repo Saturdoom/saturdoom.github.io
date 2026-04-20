@@ -35,6 +35,15 @@
 
 }
 
+/* ---------- BASE & TYPOGRAPHY ---------- */
+body {
+  background: var(--console-panel-medium);
+  font-family: 'Courier New', 'VT323', monospace;
+  /*padding: 2rem 1rem;*/
+  padding: 0 0 0 0;
+  color: #b0ff90;
+}
+
 /* ---------- NAVBAR / HEADER ---------- */ 
 .navbar-header-container {
   display: flex;
@@ -100,20 +109,11 @@
   color: var(--paint-green-medium);
 }
 
-/* ---------- BASE & TYPOGRAPHY ---------- */
-body {
-  background: var(--console-panel-medium);
-  font-family: 'Courier New', 'VT323', monospace;
-  /*padding: 2rem 1rem;*/
-  padding: 0 0 0 0;
-  color: #b0ff90;
-}
-
 /* main container (panel effect) */
 .panel {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 1.5rem 0 1.5 0;
+  /*padding: 1.5rem 0 1.5rem 0;*/
   background-color: var(--console-panel-medium);
   border-left: .1rem solid var(--bg-dark);
   border-right: .1rem solid var(--console-panel-light);
@@ -134,7 +134,8 @@ body {
   display:flex;
   flex-direction: column;
   flex: 3; /* 75% ancho */
-  gap: 1.5rem;
+  /*padding: 0 1.5rem 0 0;*/
+  /*gap: 1.5rem;*/
 }
 
 /* Nueva disposición: giro + defcon alert en la misma fila */
@@ -284,6 +285,7 @@ body {
 /* ---------- RIGHT COLUMN ---------- */
 .right-column {
   flex: 1; /* 25% ancho */
+  border: 2px solid cyan;
 }
 
 
@@ -531,12 +533,12 @@ body {
     flex-wrap: nowrap;
     justify-content: center;
     gap: .5rem;
-    width: 100%;
+    /*width: 100%;*/
     margin: 2.5rem 0;
   }
   .defcon-level {
     flex: 0 0 auto;
-    width: 4.75rem;
+    /*width: 4.75rem;*/
     aspect-ratio: 1/1;
     font-size: 1.8rem;
   }
@@ -578,6 +580,76 @@ body {
   margin: 2.5rem 0 1rem 0;
   }*/
 }
+@media (max-width: 700px) {
+  .gauges-wrapper {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .giro-direction {
+    min-width: auto;
+    flex: 1 1 100%;
+  }
+  .defcon-wrapper {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .defcon-wrapper .defcon-level {
+    width: 3.5rem;
+    font-size: 1.2rem;
+  }
+  .top-gauges {
+    gap: 0.5rem;
+  }
+  .giro-labels {
+    font-size: 0.7rem;
+  }
+  .defcon-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1rem;
+  }
+}
+@media (max-width: 700px) {
+  .gauges-wrapper {
+    flex-wrap: wrap;
+  }
+  .giro-direction {
+    min-width: auto;
+    width: 100%;
+  }
+  .defcon-wrapper {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .defcon-wrapper .defcon-level {
+    width: 3rem;
+    font-size: 1rem;
+  }
+  .giro-labels {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 700px) {
+  .giro-direction {
+    min-width: auto !important;
+    width: 100%;
+  }
+  .gauges-wrapper {
+    flex-wrap: wrap;
+  }
+  .defcon-wrapper {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .defcon-wrapper .defcon-level {
+    width: 3rem;
+    font-size: 1rem;
+  }
+}
 
 
 
@@ -605,13 +677,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  gap: 1.5rem;
+  gap: 1rem;
   text-align: center;
-  margin: 0;
   /*background-color: var(--console-panel-medium);*/
   /*border: 2px solid var(--console-panel-light);*/
+  border: 2px solid red;
   /*border-radius: 1rem;*/
   /*box-shadow: 3px 3px 10px var(--bg-dark);*/
+  margin: 0 0 1.5rem 0;
 }
 .time-block {
   width: 100%;
@@ -627,13 +700,22 @@ body {
   margin: 0;
 }
 
-.countdown-label, .alerts-label, .prepper-label, .links-label {
+.countdown-label, .prepper-label, .links-label {
   font-size: 1rem;
   letter-spacing: 0;
   color: var(--console-panel-light);
   text-transform: uppercase;
   padding: .25rem .5rem;
   background-color: var(--panel-bg);
+  margin: 0;
+}
+.alerts-label {
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: var(--console-panel-light);
+  text-transform: uppercase;
+  padding: .25rem .5rem;
+  background-color: maroon;
   /*margin: 1rem 0 0 0;*/
 }
 
@@ -654,8 +736,10 @@ body {
   margin: 0;
   /*background-color: var(--console-panel-medium);/*
   /*border: 2px solid var(--console-panel-light);/*
+  
   /*border-radius: 1rem;*
   /*box-shadow: 3px 3px 10px var(--bg-dark);*/
+  border: 2px solid red;
 }
 
 .box {

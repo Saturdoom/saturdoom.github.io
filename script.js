@@ -144,7 +144,7 @@
     ctx.clearRect(0, 0, width, height);
     ctx.save();
     // Desplazar al centro en x, y desplazar hacia abajo en y, y rotar -90° counterclockwise
-    const yOffset = 63;
+    const yOffset = 133;
     ctx.translate(width / 2, height / 2 + yOffset);
     ctx.rotate(-Math.PI / 2);
     
@@ -237,9 +237,6 @@
     ctx.arc(0, 0, 6, 0, 2 * Math.PI);
     ctx.fillStyle = '#ffffff';
     ctx.fill();
-    //ctx.strokeStyle = '#0a1c05';
-    //ctx.lineWidth = 1;
-    //ctx.stroke();
     
     ctx.restore();
   }
@@ -314,4 +311,36 @@
   }
 
   renderGiro(currentGiroIndex);
+
+  // ============================================================
+  // NUEVO: Redimensionado automático del canvas para móvil
+  // ============================================================
+  function resizeCanvasAndRedraw() {
+    const canvas = document.getElementById('gaugeCanvas');
+    if (!canvas) return;
+    const container = canvas.parentElement; // .giro-graphic
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
+    if (rect.width === 0) return;
+    // Establecer el tamaño real del canvas (en píxeles) igual al ancho del contenedor
+    canvas.width = rect.width;
+    canvas.height = rect.width * 0.5; // mantiene la proporción del semicírculo
+    // Volver a dibujar con la dirección actual
+    const w = giroData[currentGiroIndex];
+    if (w) {
+      const direction = getGiroDirection(w.brent_w, w.wti_w, w.usd_w);
+      drawGauge(direction);
+    }
+  }
+
+  // Redibujar al cargar (después de que el DOM esté listo)
+  window.addEventListener('load', function() {
+    resizeCanvasAndRedraw();
+  });
+  // Redibujar cuando se redimensione la ventana (útil para rotar móvil o cambiar de orientación)
+  window.addEventListener('resize', function() {
+    resizeCanvasAndRedraw();
+  });
+  // También llamar una vez ahora por si el load ya ocurrió
+  setTimeout(resizeCanvasAndRedraw, 100);
 })();
