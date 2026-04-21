@@ -11,11 +11,12 @@
 :root {
   /* ---------- In use ----------   */
   --background: #000000;
-  --bg-dark: #010501;
+  --dark: #010501;
   --panel-bg: #0a1c05;
   --border-green: #3a7a2f;
   --trtd: #2b6320;
   --text-green: #b3ff99;
+  --text-orange: #ffcc77;
   --up-green: #aaff88;
   --down-red: #ff7b7b;
   --neutral-grey: #c9c97a;
@@ -43,11 +44,11 @@
 
 /* ---------- BASE & TYPOGRAPHY ---------- */
 body {
-  background: var(--console-panel-medium);
   font-family: 'Courier New', 'VT323', monospace;
+  color: var(--dark);
   /*padding: 2rem 1rem;*/
   padding: 0 0 0 0;
-  color: #b0ff90;
+  background-color: var(--console-panel-medium);
 }
 
 /* ---------- NAVBAR / HEADER ---------- */ 
@@ -59,61 +60,69 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
-  height: 2rem;
-  font-size: auto;
-  /*gap: 2rem;*/
+  align-items: baseline;
+  font-size: 1rem;
+  color: var(--text-orange);
   padding: .5rem 0 .5rem 0;
-  margin: 0;
-  background-color: var(--bg-dark);
+  height: 2rem;
+  /*gap: 2rem;*/
+  background-color: var(--dark);
   /*border: 1px solid var(--console-panel-medium);*/
+  margin: 0;
 }
 .navbar a {
-  color: var(--background);
   text-decoration: none;
   font-weight: bold;
+  text-transform: uppercase; 
   letter-spacing: 1px;
+  color: var(--text-green);
 }
 .navbar a:hover {
-  color: #ffcc77;
   text-decoration: underline;
+  color: var(--text-orange);
 }
-/* ---------- Header / Logo ---------- */
+/* ---------- Header ---------- */
 .header {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: baseline;
   padding: 0 0 1.5rem 0;
   background-color: var(--console-panel-dark);
-  box-shadow: inset 0 -.1rem 0 var(--bg-dark);  /* sombra oscura inferior */
   border-bottom: 2px solid var(--console-panel-light);  /* borde claro inferior */
-
   /*margin-bottom: 1.5rem;*/
+  box-shadow: inset 0 -.1rem 0 var(--dark);  /* sombra oscura inferior */
+  border: 2px solid purple;
 }
 .logo {
   text-align: center;
   width: 100%;
-  /*border: 2px solid red;*/
+  border: 2px solid red;
 }
 .logo h1 {
   display: inline-block;
   font-size: 6.1rem;
   font-weight: bolder;
+  text-transform: uppercase;
   position: relative;
   left: -.1rem;
   text-indent: -.6rem;
   color: var(--console-panel-dark);
-  text-shadow: .1rem .1rem .1rem var(--bg-dark), 
+  text-shadow: .1rem .1rem .1rem var(--dark), 
                 -.1rem -.1rem 0 var(--console-panel-light);
   padding: .5rem 0 0 0;
-  /*border: 2px solid cyan;*/
+  border: 2px solid cyan;
 }
 .logo p {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase; 
   color: var(--paint-green-medium);
+  border: 2px solid green;
 }
+
+
+/* ---------- BODY ---------- */
 
 /* main container (panel effect) */
 .panel {
@@ -121,10 +130,10 @@ body {
   margin: 0 auto;
   /*padding: 1.5rem 0 1.5rem 0;*/
   background-color: var(--console-panel-medium);
-  border-left: .1rem solid var(--bg-dark);
+  border-left: .1rem solid var(--dark);
   border-right: .1rem solid var(--console-panel-light);
   box-shadow: inset 2px 0 0 var(--console-panel-light),  /* sombra clara izquierda */
-              inset -2px 0 0 var(--bg-dark);  /* sombra oscura derecha */
+              inset -2px 0 0 var(--dark);  /* sombra oscura derecha */
 }
 
 /* ---------- TWO-COLUMN LAYOUT ---------- */
@@ -149,17 +158,17 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  align-items: stretch;
+  /*align-items: stretch;*/
   margin-bottom: 0;
   /*border: 2px solid red;*/
 }
 
-.gauges-wrapper {
+.instruments-wrapper {
   display: flex;
   flex-wrap: nowrap;
   aspect-ratio: 2 / 1;  /* fuerza que la altura sea siempre la mitad del ancho */
   width: 100%;
-  padding: 1.5rem 1.5rem 1.5rem 0;
+  padding: 1.5rem;
   gap: 0;
   background-color: var(--console-panel-light);
   border: 2px solid var(--console-panel-dark);
@@ -168,21 +177,23 @@ body {
   8px 0 5px -3px var(--console-panel-medium),  /* sombra arriba */
   0 8px 5px -3px var(--console-panel-dark);  /* sombra izquierda */
   margin: 0;
-  /*border: 2px solid purple;*/
+  border: 2px solid purple;
+  gap: 1.5rem;
 }
 
-/* ---------- GIRO PANEL SPECIFIC ---------- */
+/* ---------- GIRO panel SPECIFIC ---------- */
 .giro-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  aspect-ratio: auto;
+  aspect-ratio: 2 / 1;
   height: auto;
   padding: 0;
   background: transparent;
   border: none;
-  /*border: 1px solid red;*/
+  border: 1px solid red;
   margin: 0;
 }
 
@@ -190,22 +201,20 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  aspect-ratio: auto;
   align-items: center;
-  width: 100%;
-  height: auto;
+  /*width: 100%;*/
+  /*height: auto;*/
   /*border: 2px solid red;*/
-}
-.giro-wrapper canvas {
-  /*display: block;*/
-  margin: 0;
-  background: transparent;
 }
 #gaugeCanvas {
   /*display: block;*/
-  width: auto;
+  width: 100%;
   height: auto;
+    background: transparent;
+
   margin: 0 auto;
-  /*border: 2px solid pink;*/
+  border: 2px solid pink;
 }
 
 
@@ -216,18 +225,22 @@ body {
 .defcon-wrapper {
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
+  justify-content: space-between;  /* reparte el espacio sobrante entre los cuadros */
+  align-items: center;
   aspect-ratio: auto;
-  height: auto;
+  /*height: auto;*/
   /*flex: 1;*/
+  width: 100%;                    /* que ocupe toda la altura del padre */
   min-width: 3rem;
-  /*height: 100%;*/
+  height: 100%;                    /* que ocupe toda la altura del padre */
+  /*height: auto;*/
+
   /*padding: 1.5rem 3rem 1.5rem 0;*/
   padding: 0;
   background: transparent;
   border: none;
   /*gap: 1rem;*/
-  /*border: 2px solid orange;*/
+  border: 2px solid orange;
   margin: 0;
 }
 .defcon-container {
@@ -245,6 +258,16 @@ body {
   flex-direction: column;
   justify-content: space-between;  /* reparte el espacio sobrante entre los cuadros */
   height: 100%;                    /* que ocupe toda la altura del padre */
+}
+
+
+.defcon-wrapper {
+  height: auto;          /* permite que se ajuste al contenido en móvil */
+}
+.defcon-container {
+  height: auto;
+  flex-direction: row;   /* si querés los cuadros en fila */
+  justify-content: space-evenly;
 }
 
 .defcon-level {
@@ -270,7 +293,7 @@ body {
   letter-spacing: 0.3rem;
   padding: .25rem .5rem;
   color: var(--console-panel-light);
-  background-color: var(--bg-dark);
+  background-color: var(--dark);
   margin: 0 0 0 0;
 }
 
@@ -317,7 +340,7 @@ body {
 
 
 
-/* ---------- COMMON PANEL STYLES (DEFCON & GIRO) ---------- */
+/* ---------- COMMON panel STYLES (DEFCON & GIRO) ---------- */
 /* Archive-About-Index */
 .defcon-panel {
   display: flex;
@@ -332,8 +355,8 @@ body {
   border: 2px solid var(--border-green);
   border-radius: 1rem;
   /*box-shadow: 
-  inset 0 8px 10px -5px var(--bg-dark),  /* sombra arriba */
-  /*inset 8px 0 10px -5px var(--bg-dark);  /* sombra izquierda */
+  inset 0 8px 10px -5px var(--dark),  /* sombra arriba */
+  /*inset 8px 0 10px -5px var(--dark);  /* sombra izquierda */
 }
 
 /* carousel container (shared) */
@@ -387,7 +410,7 @@ body {
 
 /* week header (date) */
 .week-header {
-  background: var(--bg-dark);
+  background: var(--dark);
   display: inline-block;
   padding: 0;
   margin: 0;
@@ -429,7 +452,7 @@ body {
   color: var(--console-panel-light);
   width: 100%;
   padding: 0.25rem;
-  background-color: var(--bg-dark);
+  background-color: var(--dark);
   margin: 1rem 0 0 0;
 }
 .dir-label.left {
@@ -547,7 +570,17 @@ body {
 
 
 
+.instruments-wrapper {
+  align-items: stretch; /* ya viene por defecto, pero por las dudas */
+}
 
+.defcon-wrapper {
+  height: 100%; /* para que ocupe toda la altura del wrapper */
+}
+
+.defcon-container {
+  height: 100%; /* ya lo tenés, pero aseguralo */
+}
 
 
 
@@ -559,59 +592,84 @@ body {
     flex-direction: column;
     align-items: stretch;
   }
-
   /* TOP GAUGES */
   .top-gauges {
     gap: 0.5rem;
+    border: 2px solid black;
   }
-  .gauges-wrapper {
-    flex-wrap: nowrap;
+  .instruments-wrapper {
+    /*flex-wrap: nowrap;*/
     /*width: 100%;*/
+    flex-wrap: wrap;
+    aspect-ratio: 2/1;
+    width: auto;
+    /*height: auto;*/
+    gap: 1.5rem;
   }
+
+  /*.giro-container {
+    display: flex;
+    /*width: 100%;*/
+    /*height: 100%;*/
+  /*}*/
+
   .giro-wrapper {
+    flex: 1 1 100%;
     min-width: auto !important;
     /*width: 100%;*/
     /*flex: 1 1 100%;*/
   }
-  .giro-container {
+
+
+  
+  /* DEFCON WRAPPER */
+  .defcon-wrapper {
     display: flex;
-    /*width: 100%;*/
-    /*height: 100%;*/
+    /*flex-direction: column;*/
+    flex-wrap: nowrap;
+    flex-direction: row;
+    /*justify-content: center;*/
+    /*padding: 1rem;*/
+    /*gap: 0.5rem;*/
+    border: 2px solid red;
+    flex: 1 1 100%;
+    /*flex-wrap: nowrap;*/
+    justify-content: space-evenly;
+    font-size: 1rem;
+    width: 100%;
+    height: auto; /* anula el 100% en móvil */
   }
+   /* DEFCON CONTAINER */
+    .defcon-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      justify-content: center;
+      /*gap: 0.5rem;*/
+      /*margin: 1rem 0 0 0;*/
+    }
+  .defcon-level {
+    /*flex: 0 0 auto;*/
+    aspect-ratio: 1 / 1;
+    font-size: 1.8rem;
+    /*width: 100%;*/
+    width: auto;
+    flex: 1;
+    /*font-size: 1rem;*/
+    font-size: 8vw;
+  }
+
+
+
   .giro-labels {
     font-size: 0.7rem;
   }
 
-  /* DEFCON WRAPPER */
-  .defcon-wrapper {
-    flex-direction: column;
-    flex-wrap: wrap;
-    /*justify-content: center;*/
-    /*padding: 1rem;*/
-    /*gap: 0.5rem;*/
-    border: 2px solid green;
-  }
-  .defcon-wrapper .defcon-level {
-    /*aspect-ratio: 1/1;*/
-    width: 100%;
-    font-size: 1rem;
-  }
   .defcon-label {
     font-size: 0.7rem;
     letter-spacing: 0.1rem;
-  }
-
-  /* DEFCON CONTAINER (original) */
-  .defcon-container {
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 2.5rem 0;
-  }
-  .defcon-level {
-    flex: 0 0 auto;
-    aspect-ratio: 1 / 1;
-    font-size: 1.8rem;
   }
 
   /* TABLES */
@@ -674,7 +732,7 @@ body {
   /*border: 2px solid var(--console-panel-light);*/
   /*border: 2px solid red;*/
   /*border-radius: 1rem;*/
-  /*box-shadow: 3px 3px 10px var(--bg-dark);*/
+  /*box-shadow: 3px 3px 10px var(--dark);*/
   margin: 0 0 1.5rem 0;
 }
 .time-block {
@@ -687,7 +745,7 @@ body {
   color: var(--text-green);
   background: var(--console-panel-light);
   border-radius: 1rem;
-  box-shadow: 0 0 .1rem  var(--bg-dark);
+  box-shadow: 0 0 .1rem  var(--dark);
   margin: 0;
 }
 
@@ -729,7 +787,7 @@ body {
   /*border: 2px solid var(--console-panel-light);/*
   
   /*border-radius: 1rem;*
-  /*box-shadow: 3px 3px 10px var(--bg-dark);*/
+  /*box-shadow: 3px 3px 10px var(--dark);*/
   /*border: 2px solid red;*/
 }
 
@@ -782,7 +840,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  border-top: 2px solid var(--bg-dark);
+  border-top: 2px solid var(--dark);
   padding: 3rem 0 0 0;
   margin-bottom: 2rem;
   flex-wrap: wrap;
@@ -830,7 +888,7 @@ body {
 
 
 
-/* Panel único con efecto monitor viejo */
+/* panel único con efecto monitor viejo */
 .old-monitor-panel {
   background: var(--panel-bg);
   border: 2px solid var(--border-green);
@@ -843,7 +901,7 @@ body {
   margin-bottom: 1.5rem;
 }
 .old-monitor-panel .week-header {
-  background: var(--bg-dark);
+  background: var(--dark);
   display: inline-block;
   margin-bottom: 0.5rem;
   padding: 0.2rem 0.8rem;

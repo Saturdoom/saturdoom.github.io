@@ -9,8 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
+
 <body>
   <div class="navbar-header-container">
+
     <div id="navbar-placeholder" class="debug-border"></div>
 
     <div class="header debug-border">
@@ -31,42 +33,41 @@
 
         <!-- FILA SUPERIOR: GIRO + DEFCON juntos -->
         <div class="top-gauges">
-          <div class="gauges-wrapper">
+
+          <div class="defcon-label debug-border"><strong>Current Threat Level</strong></div>
+
+
+          <div class="instruments-wrapper">
             <!-- Giro Graphic -->
-            <div class="giro-wrapper">
-              <div class="giro-container">
+            <div>
+              <div class="giro-wrapper">
+                <div class="giro-labels">
+                  <span class="giro-label">TECH</span>
+                  <span class="giro-label">UNCERTAIN</span>
+                  <span class="giro-label">ENERGY</span>
+                </div>
                 <canvas id="gaugeCanvas" class="debug-border"></canvas>
+                
+                <div class="giro-label2 debug-border"><strong>Regime Shift Early Warning</strong></div>
               </div>
             </div>
+
+
             <!-- Alert DEFCON -->
-            <div class="defcon-wrapper">
-              <div class="defcon-container debug-border">
-                <div class="defcon-level" data-level="5">5</div>
-                <div class="defcon-level" data-level="4">4</div>
-                <div class="defcon-level" data-level="3">3</div>
-                <div class="defcon-level" data-level="2">2</div>
-                <div class="defcon-level" data-level="1">1</div>
-              </div>
+            <div class="defcon-wrapper debug-border">
+              <div class="defcon-level" data-level="5">5</div>
+              <div class="defcon-level" data-level="4">4</div>
+              <div class="defcon-level" data-level="3">3</div>
+              <div class="defcon-level" data-level="2">2</div>
+              <div class="defcon-level" data-level="1">1</div>
             </div>
+
           </div>
-          
-          <div class="defcon-label debug-border"><strong>REGIME SHIFT EARLY WARNING</strong></div>
-
-          <div class="giro-labels">
-            <span class="dir-label">TECH</span>
-            <span class="dir-label">UNCERTAIN</span>
-            <span class="dir-label">ENERGY</span>
-          </div>
- 
-
-            
-            <div class="defcon-label debug-border"><strong>Current Threat Level</strong></div>
-
-
 
         </div>
 
-        <!-- PANEL ÚNICO CON EFECTO MONITOR VIEJO -->
+
+        <!-- panel ÚNICO CON EFECTO MONITOR VIEJO -->
         <div class="old-monitor-panel scanline">
 
           <!-- Tabla GIRO con botones -->
@@ -137,6 +138,9 @@
 
           <div class="box scanline">
             <p style="text-decoration: none; text-transform: uppercase;">
+              <a href="https://www.wsj.com/livecoverage/iran-war-israel-us-strait-hormuz-2026" target="_blank">[04-20] Trump Unlikely to Extend Cease-Fire as Deadline Looms</a><br>
+              <a href="https://finance.yahoo.com/markets/stocks/article/apple-ceo-tim-cook-stepping-down-to-be-succeeded-by-john-ternus-204237479.html">[04-20] Apple CEO Tim Cook stepping down, to be succeeded by John Ternus</a><br>
+              <a href="https://finance.yahoo.com/news/oil-surges-back-up-as-iran-says-strait-of-hormuz-is-closed-us-navy-seizes-iranian-vessel-130246378.html">[04-20] Oil surges back up as Iran says Strait of Hormuz is closed, US Navy seizes Iranian vessel</a><br>
               <a href="https://www.bbc.com/news/articles/c5yjzy35825o?at_medium=RSS&at_campaign=rss" target="_blank">[04-19] Oil prices rise after Trump says Iranian ship seized</a><br>
               <a href="https://www.wsj.com/livecoverage/iran-war-us-talks-2026" target="_blank">[04-19] Tehran’s Top Negotiator Says Iran and U.S. Are Far From Deal</a><br>
               <a href="https://www.marketwatch.com/story/most-u-s-farmers-cant-afford-all-the-fertilizer-they-need-this-year-opening-the-strait-of-hormuz-comes-too-late-0aa72790" target="_blank">[04-17] Most U.S. farmers can’t afford all the fertilizer they need this year. Opening the Strait of Hormuz comes too late</a><br>
@@ -181,7 +185,7 @@
     fetch('navbar.html')
       .then(response => response.text())
       .then(data => document.getElementById('navbar-placeholder').innerHTML = data)
-      .catch(() => document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:white;">⚠️ NAVBAR NOT FOUND</div>');
+      .catch(() => document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar">⚠️ Navbar Not Found</div>');
   </script>
   <script src="script.js"></script>
   <script>

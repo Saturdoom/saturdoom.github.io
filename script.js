@@ -1,6 +1,6 @@
 (function() {
   // ============================================================
-  // DEFCON PANEL (Energy & Technology)
+  // DEFCON panel (Energy & Technology)
   // ============================================================
   const weeksData = [
     { date: "2026-04-13", scan: "04-18", energy: -3.85, tech: 7.73},
@@ -110,7 +110,7 @@
   renderWeek(currentIndex);
 
   // ============================================================
-  // GIRO PANEL (Brent, WTI, USD) con gráfico de aguja semicircular
+  // GIRO panel (Brent, WTI, USD) con gráfico de aguja semicircular
   // ============================================================
   const giroData = [
     { date: "2026-04-13", scan: "04-18",
@@ -323,8 +323,10 @@
     const rect = container.getBoundingClientRect();
     if (rect.width === 0) return;
     // Establecer el tamaño real del canvas (en píxeles) igual al ancho del contenedor
-    canvas.width = rect.width;
-    canvas.height = rect.width * 0.5; // mantiene la proporción del semicírculo
+    //canvas.width = rect.width;
+    //canvas.height = rect.width * 0.5; // mantiene la proporción del semicírculo
+    canvas.width = 600;
+    canvas.height = 300;
     // Volver a dibujar con la dirección actual
     const w = giroData[currentGiroIndex];
     if (w) {
