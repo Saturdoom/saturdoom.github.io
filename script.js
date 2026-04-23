@@ -113,7 +113,7 @@
   // GIRO panel (Brent, WTI, USD) con gráfico de aguja semicircular
   // ============================================================
   const giroData = [
-    { date: "2026-04-13", scan: "04-18",
+    { //date: "2026-04-13", scan: "04-18",
       brent_w: -5.06, brent_m: -7.8,
       wti_w: -11.24, wti_m: -10.24,
       usd_w: -0.55, usd_m: -1.44 },
@@ -122,10 +122,10 @@
 
   let currentGiroIndex = 0;
 
-  const giroDateHeader = document.getElementById('giroDateHeader');
+  //const giroDateHeader = document.getElementById('giroDateHeader');
   const giroTableBody = document.getElementById('giroTableBody');
-  const prevGiroBtn = document.getElementById('prevGiroBtn');
-  const nextGiroBtn = document.getElementById('nextGiroBtn');
+  //const prevGiroBtn = document.getElementById('prevGiroBtn');
+  //const nextGiroBtn = document.getElementById('nextGiroBtn');
 
   function getGiroDirection(brent_w, wti_w, usd_w) {
     if (brent_w > 1.0 && usd_w > 0.5 && wti_w < -0.5) return 'right';

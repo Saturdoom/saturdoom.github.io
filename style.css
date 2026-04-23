@@ -120,12 +120,25 @@ header {
 
 main {
   grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;  /* o align-self: start; */
+  gap: 1em;
   background-color: var(--console-panel-medium);
-  border-top: .4rem solid var(--console-panel-dark);
-  border-right: .4rem solid var(--console-panel-light);
-  border-left: .4rem solid var(--console-panel-dark);
-  border-bottom: .4rem solid var(--console-panel-light);  border-radius: .8rem;
+  border-top: .5em solid var(--console-panel-medium);
+  border-right: 1em solid var(--console-panel-light);
+  border-left: 1em solid var(--console-panel-dark);
+  border-bottom: .5em solid var(--console-panel-medium);  border-radius: .8rem;
   margin: 1em 1em 1em 5em;
+}
+.main-container {
+  display: grid;
+  gap: 1em;
+  /*background-color: black;*/
+  border-top: .5em solid var(--console-panel-dark);
+  border-right: .5em solid var(--console-panel-light);
+  border-bottom: .5em solid var(--console-panel-light);
+  border-left: .5em solid var(--console-panel-dark);
 }
 aside {
   grid-area: sidebar;
@@ -188,6 +201,42 @@ aside {
   padding: 0 0 0 .5em;
   background-color: var(--paint-sepia-dark);
 }
+
+/* --------- Tables --------- */
+.tracking-table.mini {
+  /*width: 100%;*/
+  /*max-width: none;*/
+  /*margin: 0 auto;*/
+  /*font-size: 1.4rem;*/
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.tracking-table.mini th,
+.tracking-table.mini td {
+  /*width: 50%;*/
+  /*font-size: 1.2rem;*/
+  /*padding: .25rem .25rem;*/
+  /*border: 1px solid var(--trtd);*/
+  /*text-align: center;*/
+}
+.tracking-table.mini th {
+  background: #142d0e;
+  color: #caffb0;
+  text-transform: uppercase;
+}
+.tracking-table.mini td {
+  background: #051203;
+}
+.tracking-table.mini td:first-child,
+.tracking-table.mini th:first-child {
+  text-align: center;
+}
+.tracking-table.mini td:last-child,
+.tracking-table.mini th:last-child {
+  text-align: center;
+}
+
+
 
 .box {
   color: var(--text-green);
@@ -261,4 +310,4 @@ footer {
 
 /*.debug-border {
   border: 2px solid red;
-}*/
+}
