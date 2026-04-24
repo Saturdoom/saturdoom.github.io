@@ -125,7 +125,7 @@ main {
   align-content: start;  /* o align-self: start; */
   gap: 1em;
   background-color: var(--console-panel-medium);
-  border-top: .5em solid var(--console-panel-medium);
+  border-top: .5em solid var(--console-panel-dark);
   border-right: 1em solid var(--console-panel-light);
   border-left: 1em solid var(--console-panel-dark);
   border-bottom: .5em solid var(--console-panel-medium);  border-radius: .8rem;
@@ -135,10 +135,34 @@ main {
   display: grid;
   gap: 1em;
   /*background-color: black;*/
-  border-top: .5em solid var(--console-panel-dark);
+  border-top: .5em solid var(--console-panel-medium);
   border-right: .5em solid var(--console-panel-light);
   border-bottom: .5em solid var(--console-panel-light);
   border-left: .5em solid var(--console-panel-dark);
+  /*margin-bottom: .5em;*/
+}
+.defcon-container {
+  justify-content: center;
+  color: var(--dark);
+  padding: 0.5em;
+  /*background: var(--console-panel-light);*/
+  box-shadow: inset .1em .1em .5em var(--console-panel-shadow),  /* sombra clara izquierda */
+              inset -.1em -.1em .5em var(--console-panel-shadow);  /* sombra oscura derecha */
+  border-top: .1em solid var(--console-panel-dark);
+  border-right: .1em solid var(--console-panel-light);
+  border-bottom: .1em solid var(--console-panel-light);
+  border-left: .1em solid var(--console-panel-dark);
+  border-radius: .2em;
+  margin: 0;
+}
+.defcon-level {
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  border: .75rem solid #2f6b2a;
+  background-color: #0a1a05;
+  color: #2f6b2a;
+  transition: all 0.2s ease;
 }
 aside {
   grid-area: sidebar;
