@@ -3,9 +3,9 @@
   // DEFCON PANEL (Energy & Technology)
   // ============================================================
   const weeksData = [
-    { date: "2026-04-20", scan: "04-25", energy: -5, tech: -3},
+    { date: "2026-04-20", scan: "04-25", energy: 3.36, tech: 3.80},
     // Agrega más semanas aquí (más recientes primero)
-    { date: "2026-04-13", scan: "04-18", energy: -3.85, tech: 7.73},
+    { date: "2026-04-13", scan: "04-18", energy: 0.71, tech: 2.51},
 
   ];
 
@@ -120,14 +120,14 @@
   // ============================================================
   const giroData = [
     { date: "2026-04-20", scan: "04-25",
-      brent_w: -6, brent_m: 0,
-      wti_w: 4.5, wti_m: 3.24,
-      usd_w: 5, usd_m: -3 },
+      brent_w: 10.40, brent_m: -11.36,
+      wti_w: 13.15, wti_m: -4.78,
+      usd_w: 0.42, usd_m: -0.16 },
     // Agrega más semanas aquí (más recientes primero)
       { date: "2026-04-13", scan: "04-18",
-      brent_w: -5.06, brent_m: -7.8,
-      wti_w: -11.24, wti_m: -10.24,
-      usd_w: -0.55, usd_m: -1.44 },
+      brent_w: 5.71, brent_m: -2.72,
+      wti_w: 1.23, wti_m: 1.45,
+      usd_w: 0.59, usd_m: -0.11 },
   ];
 
   // Ya no usamos currentGiroIndex, usamos currentIndex
