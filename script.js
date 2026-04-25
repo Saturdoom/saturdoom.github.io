@@ -130,12 +130,13 @@
       usd_w: 0.59, usd_m: -0.11 },
   ];
 
-  // Ya no usamos currentGiroIndex, usamos currentIndex
   const giroTableBody = document.getElementById('giroTableBody');
-  // Nota: en tu HTML no existe #giroDateHeader pero no importa, no lo usaremos
-  // Si existe, podemos actualizarlo también, pero vos querés una sola fecha.
-  // Por las dudas, si existe, lo actualizamos igual
-  const giroDateHeader = document.getElementById('giroDateHeader');
+
+  // Definir variables de colores
+  const lcdWhiteOff = "#c8c8b8";
+  const iconDark = "#646464";
+  const digitDark = '#010501';
+  const shadow = 'rgba(100, 100, 100, 0.6)';
 
   function getGiroDirection(brent_w, wti_w, usd_w) {
     if (brent_w > 1.0 && usd_w > 0.5 && wti_w < -0.5) return 'right';
@@ -150,8 +151,11 @@
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
-    
-    ctx.clearRect(0, 0, width, height);
+
+    // === AGREGADO: fondo claro ===
+    ctx.fillStyle = lcdWhiteOff;
+    //ctx.fillRect(0, 0, width, height);
+
     ctx.save();
     const yOffset = 76;
     ctx.translate(width / 2, height / 2 + yOffset);
@@ -163,15 +167,15 @@
     const startAngle = -Math.PI / 2;
     const sweep = Math.PI;
     const sectorAngle = sweep / 3;
-    
+
     const colors = {
-      left: '#c8c8b8',
-      center: '#c8c8b8',
-      right: '#c8c8b8'
+      left: lcdWhiteOff,
+      center: lcdWhiteOff,
+      right: lcdWhiteOff
     };
     
     ctx.shadowBlur = 4;
-    ctx.shadowColor = 'rgba(100, 100, 100, 0.6)';
+    ctx.shadowColor = shadow;
     ctx.shadowOffsetX = 4;
     ctx.shadowOffsetY = 1;
 
@@ -180,7 +184,7 @@
     ctx.lineTo(centerX, centerY);
     ctx.fillStyle = colors.left;
     ctx.fill();
-    ctx.strokeStyle = '#010501';
+    ctx.strokeStyle = iconDark;
     ctx.lineWidth = 1;
     ctx.stroke();
     
@@ -200,7 +204,7 @@
     
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + sweep);
-    ctx.strokeStyle = '#010501';
+    ctx.strokeStyle = iconDark;
     ctx.lineWidth = 2;
     ctx.stroke();
     
@@ -224,18 +228,18 @@
     ctx.shadowOffsetX = 4;
     ctx.shadowOffsetY = 1;
     ctx.shadowBlur = 6;
-    ctx.shadowColor = 'rgba(100, 100, 100, 0.6)';
+    ctx.shadowColor = shadow;
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(needleX, needleY);
-    ctx.strokeStyle = '#010501';
+    ctx.strokeStyle = digitDark;
     ctx.lineWidth = 3;
     ctx.stroke();
     ctx.shadowBlur = 0;
     
     ctx.beginPath();
     ctx.arc(0, 0, 6, 0, 2 * Math.PI);
-    ctx.fillStyle = '#010501';
+    ctx.fillStyle = digitDark;
     ctx.fill();
     
     ctx.restore();
@@ -247,9 +251,6 @@
     // Actualizar fecha única también desde GIRO (por si acaso)
     if (dateHeader && w.date) {
       dateHeader.innerHTML = ` WEEK ${w.date} · SCAN ${w.scan}`;
-    }
-    if (giroDateHeader) {
-      giroDateHeader.innerHTML = ` WEEK ${w.date} · SCAN ${w.scan}`;
     }
 
     const assets = [
