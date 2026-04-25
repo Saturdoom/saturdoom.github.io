@@ -144,7 +144,7 @@ main {
 .defcon-container, .gauge-container {
   justify-content: center;
   color: var(--dark);
-  padding: 0.5em;
+  padding: 0.5em 0.5em 0 0.5em;
   /*background: var(--console-panel-light);*/
   box-shadow: inset .1em .1em .5em var(--console-panel-shadow),  /* sombra clara izquierda */
               inset -.1em -.1em .5em var(--console-panel-shadow);  /* sombra oscura derecha */
@@ -185,6 +185,7 @@ aside {
   gap: .8em;
   border-radius: .2em;
 }
+
 .lcd-screen {
   color: var(--dark);
   padding: 0.5em;
@@ -265,7 +266,7 @@ aside {
 
 
 .box {
-  color: var(--text-green);
+  color: var(--dark);
   padding: 1em;
   background-color: var(--dark);
   border: 2px solid var(--border-green);
@@ -328,10 +329,9 @@ footer {
   margin: 0 auto;
 }
 .giro-direction {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
-  /*justify-content: space-between;*/
+  /*justify-content:center;*/
   margin: 0;
   height: 100%;
   background: var(--lcd-white-off);
@@ -344,7 +344,7 @@ footer {
 .giro-graphic {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  justify-content: space-around;
   height: auto;
 }
 
@@ -352,7 +352,7 @@ footer {
   width: 100%;
   font-weight: bold;
   font-size: 1rem;
-  color: var(--text-green);
+  color: var(--dark);
 }
 .dir-label.left,
 .dir-label.right {
@@ -372,7 +372,7 @@ footer {
   flex: 0 auto;
 }
 .dir-label.left {
-  color: var(--text-green);   /* mismo verde que DEFCON 5 */
+  color: var(--dark);   /* mismo verde que DEFCON 5 */
 }
 .dir-label.right {
   color: #ffaaaa;   /* mismo rojo que DEFCON 1 */
@@ -415,7 +415,7 @@ footer {
 
 /* color classes for performance (trend vs previous week) */
 .up {
-  color: var(--up-green);
+  color: var(--dark);
 }
 .down {
   color: var(--dark);
@@ -531,7 +531,7 @@ footer {
   text-align: left;
   width: 100%;
   height: 100%;
-  0;
+  
   padding: 3rem 0
 }
 /* navigation buttons (shared) */
@@ -627,10 +627,10 @@ footer {
   );
   pointer-events: none;
 }
-
-
-
-
+/*.scroll {
+  max-height: 400px;
+  overflow-y: auto;
+}*/
 
 /*.debug-border {
   border: 2px solid red;

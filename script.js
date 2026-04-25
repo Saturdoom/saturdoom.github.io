@@ -32,7 +32,7 @@
     const techTrend = getTrendClass(week.tech, prevWeek?.tech);
 
     // La fecha se actualizará también desde GIRO, pero la ponemos acá igual
-    dateHeader.innerHTML = `🪖 WEEK ${week.date} · SCAN ${week.scan}`;
+    dateHeader.innerHTML = ` WEEK ${week.date} · SCAN ${week.scan}`;
     const energyDisplay = (week.energy > 0 ? `+${week.energy}%` : `${week.energy}%`);
     const techDisplay = (week.tech > 0 ? `+${week.tech}%` : `${week.tech}%`);
 
@@ -68,21 +68,23 @@
   }
 
   function updateButtons() {
-    if (currentIndex === 0) {
-      prevBtn.setAttribute('disabled', 'disabled');
-      prevBtn.classList.add('disabled');
-    } else {
-      prevBtn.removeAttribute('disabled');
-      prevBtn.classList.remove('disabled');
-    }
-    if (currentIndex === weeksData.length - 1) {
-      nextBtn.setAttribute('disabled', 'disabled');
-      nextBtn.classList.add('disabled');
-    } else {
-      nextBtn.removeAttribute('disabled');
-      nextBtn.classList.remove('disabled');
-    }
+  // prev: deshabilitado si estamos en la semana más antigua (último índice)
+  if (currentIndex === weeksData.length - 1) {
+    prevBtn.setAttribute('disabled', 'disabled');
+    prevBtn.classList.add('disabled');
+  } else {
+    prevBtn.removeAttribute('disabled');
+    prevBtn.classList.remove('disabled');
   }
+  // next: deshabilitado si estamos en la semana más reciente (primer índice)
+  if (currentIndex === 0) {
+    nextBtn.setAttribute('disabled', 'disabled');
+    nextBtn.classList.add('disabled');
+  } else {
+    nextBtn.removeAttribute('disabled');
+    nextBtn.classList.remove('disabled');
+  }
+}
 
   function prevWeek() {
     if (currentIndex + 1 < weeksData.length) {
@@ -244,10 +246,10 @@
     if (!w) return;
     // Actualizar fecha única también desde GIRO (por si acaso)
     if (dateHeader && w.date) {
-      dateHeader.innerHTML = `🪖 WEEK ${w.date} · SCAN ${w.scan}`;
+      dateHeader.innerHTML = ` WEEK ${w.date} · SCAN ${w.scan}`;
     }
     if (giroDateHeader) {
-      giroDateHeader.innerHTML = `🪖 WEEK ${w.date} · SCAN ${w.scan}`;
+      giroDateHeader.innerHTML = ` WEEK ${w.date} · SCAN ${w.scan}`;
     }
 
     const assets = [
