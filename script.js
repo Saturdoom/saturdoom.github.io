@@ -3,6 +3,7 @@
   // DEFCON PANEL (Energy & Technology)
   // ============================================================
   const weeksData = [
+    { date: "2026-05-04", scan: "05-09", energy: -5.35, tech: 8.43},
     { date: "2026-04-27", scan: "05-02", energy: 3.66, tech: 0.81},
     { date: "2026-04-20", scan: "04-25", energy: 3.36, tech: 3.80},
     // Agrega más semanas aquí (más recientes primero)
@@ -120,6 +121,10 @@
   // GIRO PANEL (Brent, WTI, USD) con gráfico de aguja semicircular
   // ============================================================
   const giroData = [
+    { date: "2026-05-04", scan: "05-09",
+      brent_w: -6.93, brent_m: 1.94,
+      wti_w: -6.93, wti_m: -3.69,
+      usd_w: -0.38, usd_m: -0.54 },
     { date: "2026-04-27", scan: "05-02",
       brent_w: 0.55, brent_m: -0.86,
       wti_w: 6.39, wti_m: -8.79,
