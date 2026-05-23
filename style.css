@@ -219,7 +219,7 @@ aside {
   justify-content: center;
   text-align: start;
   border-radius: .2em;
-  border: 2px solid purple;
+  /*border: 2px solid purple;*/
 }
 
 .lcd-screen {
