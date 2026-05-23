@@ -3,12 +3,13 @@
   // DEFCON PANEL (Energy & Technology)
   // ============================================================
   const weeksData = [
+    { date: "2026-05-18", scan: "05-23", energy: 0.08, tech: 2.34},
     { date: "2026-05-11", scan: "05-16", energy: 6.71, tech: 0.42},
     { date: "2026-05-04", scan: "05-09", energy: -5.35, tech: 8.43},
-    { date: "2026-04-27", scan: "05-02", energy: 3.66, tech: 0.81},
+    { date: "2026-04-27", scan: "05-02", energy: 3.48, tech: 1.03},
     { date: "2026-04-20", scan: "04-25", energy: 3.36, tech: 3.80},
     // Agrega más semanas aquí (más recientes primero)
-    { date: "2026-04-13", scan: "04-18", energy: 0.71, tech: 2.51},
+    { date: "2026-04-13", scan: "04-18", energy: -3.37, tech: 8.22},
 
   ];
 
@@ -122,27 +123,31 @@
   // GIRO PANEL (Brent, WTI, USD) con gráfico de aguja semicircular
   // ============================================================
   const giroData = [
-    { date: "2026-05-011", scan: "05-16",
-      brent_w: 7.87, brent_m: 7.91,
-      wti_w: 10.48, wti_m: 12.52,
-      usd_w: 1.46, usd_m: 0.69 },
+    { date: "2026-05-18", scan: "05-23",
+      brent_w: -5.24, brent_m: -1.46,
+      wti_w: -8.37, wti_m: 0.78,
+      usd_w: 0.05, usd_m: 0.53 },
+    { date: "2026-05-11", scan: "05-16",
+      brent_w: 7.87, brent_m: 9.93,
+      wti_w: 10.48, wti_m: 11.33,
+      usd_w: 1.46, usd_m: 1.07 },
     { date: "2026-05-04", scan: "05-09",
-      brent_w: -6.93, brent_m: 1.94,
-      wti_w: -6.93, wti_m: -3.69,
-      usd_w: -0.38, usd_m: -0.54 },
+      brent_w: -6.93, brent_m: 5.60,
+      wti_w: -6.93, wti_m: -2.50,
+      usd_w: -0.38, usd_m: -0.99 },
     { date: "2026-04-27", scan: "05-02",
-      brent_w: 0.55, brent_m: -0.86,
-      wti_w: 6.39, wti_m: -8.79,
-      usd_w: -0.27, usd_m: -1.77 },
+      brent_w: 9.07, brent_m: 7.58,
+      wti_w: 8.06, wti_m: 2.41,
+      usd_w: -0.30, usd_m: 9.55 },
     { date: "2026-04-20", scan: "04-25",
-      brent_w: 10.40, brent_m: -11.36,
-      wti_w: 13.15, wti_m: -4.78,
-      usd_w: 0.42, usd_m: -0.16 },
+      brent_w: 10.40, brent_m: -7.62,
+      wti_w: 13.15, wti_m: 0.42,
+      usd_w: 0.42, usd_m: -1.39 },
     // Agrega más semanas aquí (más recientes primero)
       { date: "2026-04-13", scan: "04-18",
-      brent_w: 5.71, brent_m: -2.72,
-      wti_w: 1.23, wti_m: 1.45,
-      usd_w: 0.59, usd_m: -0.11 },
+      brent_w: -5.06, brent_m: -16.82,
+      wti_w: -13.17, wti_m: -12.78,
+      usd_w: -0.56, usd_m: -1.14 },
   ];
 
   const giroTableBody = document.getElementById('giroTableBody');
