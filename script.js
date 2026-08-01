@@ -4,6 +4,7 @@
   // ============================================================
   // Agrega más semanas aquí (más recientes primero)
   const weeksData = [
+    { date: "2026-07-27", scan: "08-01", energy: 0.29, tech: -1.74},
     { date: "2026-07-20", scan: "07-25", energy: 3.36, tech: 0.17},
     { date: "2026-07-13", scan: "07-18", energy: 4.72, tech: -5.48},
     { date: "2026-07-06", scan: "07-11", energy: 3.49, tech: 3.43},
@@ -132,10 +133,14 @@
   // GIRO PANEL (Brent, WTI, USD) con gráfico de aguja semicircular
   // ============================================================
   const giroData = [
+      { date: "2026-07-27", scan: "08-01",
+      brent_w: -10.50, brent_m: 25.52,
+      wti_w: -8.16, wti_m: 17.92,
+      usd_w: -1.61, usd_m: 39.00 },
       { date: "2026-07-20", scan: "07-25",
-      brent_w: 11.67, brent_m: 33.72,
-      wti_w: 9.67, wti_m: 28.80,
-      usd_w: 0.70, usd_m: 0.10 },
+      brent_w: 9.85, brent_m: 31.55,
+      wti_w: 8.27, wti_m: 27.15,
+      usd_w: 0.71, usd_m: 0.11 },
       { date: "2026-07-13", scan: "07-18",
       brent_w: 15.91, brent_m: 10.33,
       wti_w: 15.52, wti_m: 7.69,
