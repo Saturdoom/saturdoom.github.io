@@ -148,7 +148,7 @@
     { date: "2026-08-03", scan: "08-08",
       brent_w: -7.29, brent_m: 9.92,
       wti_w: -7.67, wti_m: 9.48,
-      usd_w: 0,07, usd_m: -1.07 },
+      usd_w: 0.07, usd_m: -1.07 },
     { date: "2026-07-27", scan: "08-01",
       brent_w: -6.88, brent_m: 25.52,
       wti_w: -5.2, wti_m: 23.26,
