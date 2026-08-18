@@ -290,7 +290,7 @@
 
     // === AGREGADO: fondo claro ===
     ctx.fillStyle = lcdWhiteOff;
-    //ctx.fillRect(0, 0, width, height);
+    ctx.fillRect(0, 0, width, height); //
 
     ctx.save();
     const yOffset = 76;
