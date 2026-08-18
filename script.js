@@ -210,10 +210,11 @@
     const amarillo = getComputedStyle(document.documentElement).getPropertyValue('--giro-amarillo').trim();
     const rojo = getComputedStyle(document.documentElement).getPropertyValue('--giro-rojo').trim();
 
-    ctx.shadowBlur = 6;
-    ctx.shadowColor = shadow;
-    ctx.shadowOffsetX = 4;
-    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 0;
+    //ctx.shadowBlur = 6;
+    //ctx.shadowColor = shadow;
+    //ctx.shadowOffsetX = 4;
+    //ctx.shadowOffsetY = 1;
 
     // sectores (relleno claro)
     ctx.beginPath();
