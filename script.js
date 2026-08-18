@@ -2,7 +2,6 @@
   // ============================================================
   // DEFCON PANEL (Energy & Technology)
   // ============================================================
-  // Agrega más semanas aquí (más recientes primero)
   const weeksData = [
     { date: "2026-08-10", scan: "08-15", energy: 7.67, tech: -3.09},
     { date: "2026-08-03", scan: "08-08", energy: -3.44, tech: 7.20},
@@ -33,10 +32,9 @@
     { date: "2026-02-09", scan: "02-14", energy: 2.06, tech: -1.12},
     { date: "2026-02-02", scan: "02-07", energy: 4.31, tech: -1.91},
     { date: "2026-01-26", scan: "01-31", energy: 3.79, tech: -0.84},
-
   ];
 
-  let currentIndex = 0;  // índice único
+  let currentIndex = 0;
 
   const dateHeader = document.getElementById('weekDateHeader');
   const tableBody = document.getElementById('weekTableBody');
@@ -58,7 +56,6 @@
     const energyTrend = getTrendClass(week.energy, prevWeek?.energy);
     const techTrend = getTrendClass(week.tech, prevWeek?.tech);
 
-    // La fecha se actualizará también desde GIRO, pero la ponemos acá igual
     dateHeader.innerHTML = ` WEEK ${week.date} · SCAN ${week.scan}`;
     const energyDisplay = (week.energy > 0 ? `+${week.energy}%` : `${week.energy}%`);
     const techDisplay = (week.tech > 0 ? `+${week.tech}%` : `${week.tech}%`);
@@ -90,34 +87,31 @@
     const activeLevel = document.querySelector(`.defcon-level[data-level="${level}"]`);
     if (activeLevel) activeLevel.classList.add('active');
 
-    // Actualizar estado de botones (común)
     updateButtons();
   }
 
   function updateButtons() {
-  // prev: deshabilitado si estamos en la semana más antigua (último índice)
-  if (currentIndex === weeksData.length - 1) {
-    prevBtn.setAttribute('disabled', 'disabled');
-    prevBtn.classList.add('disabled');
-  } else {
-    prevBtn.removeAttribute('disabled');
-    prevBtn.classList.remove('disabled');
+    if (currentIndex === weeksData.length - 1) {
+      prevBtn.setAttribute('disabled', 'disabled');
+      prevBtn.classList.add('disabled');
+    } else {
+      prevBtn.removeAttribute('disabled');
+      prevBtn.classList.remove('disabled');
+    }
+    if (currentIndex === 0) {
+      nextBtn.setAttribute('disabled', 'disabled');
+      nextBtn.classList.add('disabled');
+    } else {
+      nextBtn.removeAttribute('disabled');
+      nextBtn.classList.remove('disabled');
+    }
   }
-  // next: deshabilitado si estamos en la semana más reciente (primer índice)
-  if (currentIndex === 0) {
-    nextBtn.setAttribute('disabled', 'disabled');
-    nextBtn.classList.add('disabled');
-  } else {
-    nextBtn.removeAttribute('disabled');
-    nextBtn.classList.remove('disabled');
-  }
-}
 
   function prevWeek() {
     if (currentIndex + 1 < weeksData.length) {
       currentIndex++;
       renderWeek(currentIndex);
-      renderGiro(currentIndex);  // actualizar también el GIRO
+      renderGiro(currentIndex);
     }
   }
 
@@ -143,136 +137,42 @@
   }
 
   // ============================================================
-  // GIRO PANEL (Brent, WTI, USD) con gráfico de aguja semicircular
+  // GIRO PANEL
   // ============================================================
   const giroData = [
-    { date: "2026-08-10", scan: "08-15",
-      brent_w: 5.95,
-      wti_w: -5.40,
-      usd_w: 0.7 },
-//    { date: "2026-08-10", scan: "08-15",
-//      brent_w: 5.95, brent_m: 0.48,
-//      wti_w: 5.40, wti_m: -0.11,
-//      usd_w: 0.07, usd_m: -1.07 },
-    { date: "2026-08-03", scan: "08-08",
-      brent_w: -7.29,
-      wti_w: -7.67,
-      usd_w: -0.20 },
-    { date: "2026-07-27", scan: "08-01",
-      brent_w: -6.88,
-      wti_w: -5.2,
-      usd_w: -1.65 },
-    { date: "2026-07-20", scan: "07-25",
-      brent_w: 9.85,
-      wti_w: 8.27,
-      usd_w: 0.71 },
-    { date: "2026-07-13", scan: "07-18",
-      brent_w: 15.91,
-      wti_w: 15.52,
-      usd_w: -0.22 },
-    { date: "2026-07-06", scan: "07-11",
-      brent_w: 5.86,
-      wti_w: 3.96,
-      usd_w: 0.11 },
-    { date: "2026-06-29", scan: "07-04",
-      brent_w: -0.26,
-      wti_w: -0.78,
-      usd_w: -0.49 },
-    { date: "2026-06-22", scan: "06-27",
-      brent_w: -9.84,
-      wti_w: -9.62,
-      usd_w: 0.51 },
-    { date: "2026-06-15", scan: "06-20",
-      brent_w: -8.57,
-      wti_w: -9.75,
-      usd_w: 1.10 },
-    { date: "2026-06-08", scan: "06-13",
-      brent_w: -6.19,
-      wti_w: -6.25,
-      usd_w: -0.32 },
-    { date: "2026-06-01", scan: "06-06",
-      brent_w: 1.13,
-      wti_w: 3.64,
-      usd_w: 1.14 },
-    { date: "2026-05-25", scan: "05-30",
-      brent_w: -10.27,
-      wti_w: -9.33,
-      usd_w: -0.25 },
-    { date: "2026-05-18", scan: "05-23",
-      brent_w: -5.24,
-      wti_w: -8.37,
-      usd_w: 0.05 },
-    { date: "2026-05-11", scan: "05-16",
-      brent_w: 7.87,
-      wti_w: 10.48,
-      usd_w: 1.46 },
-    { date: "2026-05-04", scan: "05-09",
-      brent_w: -6.93,
-      wti_w: -6.40,
-      usd_w: -0.38 },
-    { date: "2026-04-27", scan: "05-02",
-      brent_w: 3.32,
-      wti_w: 7.99,
-      usd_w: -0.30 },
-    { date: "2026-04-20", scan: "04-25",
-      brent_w: 16.54,
-      wti_w: 12.58,
-      usd_w: 0.42 },
-    // Agrega más semanas aquí (más recientes primero)
-      { date: "2026-04-13", scan: "04-18",
-      brent_w: -5.06,
-      wti_w: -13.17,
-      usd_w: -0.56 },
-      { date: "2026-04-06", scan: "04-11",
-      brent_w: -13.27,
-      wti_w: -14.09,
-      usd_w: -1.33 },
-      { date: "2026-03-30", scan: "04-04",
-      brent_w: -2.49,
-      wti_w: 12.82,
-      usd_w: -0.17 },
-      { date: "2026-03-23", scan: "03-28",
-      brent_w: 0.34,
-      wti_w: 1.34,
-      usd_w: 0.50 },
-      { date: "2026-03-16", scan: "03-21",
-      brent_w: 8.77,
-      wti_w: -0.40,
-      usd_w: -0.71 },
-      { date: "2026-03-09", scan: "03-14",
-      brent_w: 11.27,
-      wti_w: 8.59,
-      usd_w: 1.38 },
-      { date: "2026-03-02", scan: "03-07",
-      brent_w: 27.88,
-      wti_w: 35.63,
-      usd_w: 1.41 },
-
-      { date: "2026-02-23", scan: "02-29",
-      brent_w: 1.00,
-      wti_w: 0.95,
-      usd_w: -0.19 },
-      { date: "2026-02-16", scan: "02-21",
-      brent_w: 5.92,
-      wti_w: 5.57,
-      usd_w: 0.95 },
-      { date: "2026-02-09", scan: "02-14",
-      brent_w: -0.44,
-      wti_w: -1.04,
-      usd_w: -0.77 },
-      { date: "2026-02-02", scan: "02-07",
-      brent_w: -3.73,
-      wti_w: -2.55,
-      usd_w: 0.66 },
-      { date: "2026-02-26", scan: "01-31",
-      brent_w: 7.30,
-      wti_w: 6.78,
-      usd_w: -0.62 },
+    { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: -5.40, usd_w: 0.7 },
+    { date: "2026-08-03", scan: "08-08", brent_w: -7.29, wti_w: -7.67, usd_w: -0.20 },
+    { date: "2026-07-27", scan: "08-01", brent_w: -6.88, wti_w: -5.2, usd_w: -1.65 },
+    { date: "2026-07-20", scan: "07-25", brent_w: 9.85, wti_w: 8.27, usd_w: 0.71 },
+    { date: "2026-07-13", scan: "07-18", brent_w: 15.91, wti_w: 15.52, usd_w: -0.22 },
+    { date: "2026-07-06", scan: "07-11", brent_w: 5.86, wti_w: 3.96, usd_w: 0.11 },
+    { date: "2026-06-29", scan: "07-04", brent_w: -0.26, wti_w: -0.78, usd_w: -0.49 },
+    { date: "2026-06-22", scan: "06-27", brent_w: -9.84, wti_w: -9.62, usd_w: 0.51 },
+    { date: "2026-06-15", scan: "06-20", brent_w: -8.57, wti_w: -9.75, usd_w: 1.10 },
+    { date: "2026-06-08", scan: "06-13", brent_w: -6.19, wti_w: -6.25, usd_w: -0.32 },
+    { date: "2026-06-01", scan: "06-06", brent_w: 1.13, wti_w: 3.64, usd_w: 1.14 },
+    { date: "2026-05-25", scan: "05-30", brent_w: -10.27, wti_w: -9.33, usd_w: -0.25 },
+    { date: "2026-05-18", scan: "05-23", brent_w: -5.24, wti_w: -8.37, usd_w: 0.05 },
+    { date: "2026-05-11", scan: "05-16", brent_w: 7.87, wti_w: 10.48, usd_w: 1.46 },
+    { date: "2026-05-04", scan: "05-09", brent_w: -6.93, wti_w: -6.40, usd_w: -0.38 },
+    { date: "2026-04-27", scan: "05-02", brent_w: 3.32, wti_w: 7.99, usd_w: -0.30 },
+    { date: "2026-04-20", scan: "04-25", brent_w: 16.54, wti_w: 12.58, usd_w: 0.42 },
+    { date: "2026-04-13", scan: "04-18", brent_w: -5.06, wti_w: -13.17, usd_w: -0.56 },
+    { date: "2026-04-06", scan: "04-11", brent_w: -13.27, wti_w: -14.09, usd_w: -1.33 },
+    { date: "2026-03-30", scan: "04-04", brent_w: -2.49, wti_w: 12.82, usd_w: -0.17 },
+    { date: "2026-03-23", scan: "03-28", brent_w: 0.34, wti_w: 1.34, usd_w: 0.50 },
+    { date: "2026-03-16", scan: "03-21", brent_w: 8.77, wti_w: -0.40, usd_w: -0.71 },
+    { date: "2026-03-09", scan: "03-14", brent_w: 11.27, wti_w: 8.59, usd_w: 1.38 },
+    { date: "2026-03-02", scan: "03-07", brent_w: 27.88, wti_w: 35.63, usd_w: 1.41 },
+    { date: "2026-02-23", scan: "02-29", brent_w: 1.00, wti_w: 0.95, usd_w: -0.19 },
+    { date: "2026-02-16", scan: "02-21", brent_w: 5.92, wti_w: 5.57, usd_w: 0.95 },
+    { date: "2026-02-09", scan: "02-14", brent_w: -0.44, wti_w: -1.04, usd_w: -0.77 },
+    { date: "2026-02-02", scan: "02-07", brent_w: -3.73, wti_w: -2.55, usd_w: 0.66 },
+    { date: "2026-02-26", scan: "01-31", brent_w: 7.30, wti_w: 6.78, usd_w: -0.62 },
   ];
 
   const giroTableBody = document.getElementById('giroTableBody');
 
-  // Definir variables de colores
   const lcdWhiteOff = "#c8c8b8";
   const iconDark = "#646464";
   const digitDark = '#010501';
@@ -284,7 +184,6 @@
     return 'up';
   }
 
-  // Dibuja el semicírculo (exactamente igual, sin cambios)
   function drawGauge(direction) {
     const canvas = document.getElementById('gaugeCanvas');
     if (!canvas) return;
@@ -292,16 +191,15 @@
     const width = canvas.width;
     const height = canvas.height;
 
-    // === AGREGADO: fondo claro ===
     ctx.fillStyle = lcdWhiteOff;
-    ctx.fillRect(0, 0, width, height); //
+    ctx.fillRect(0, 0, width, height);
 
     ctx.save();
     const yOffset = 76;
     ctx.translate(width / 2, height / 2 + yOffset);
     ctx.rotate(-Math.PI / 2);
-    
-    const radius = Math.min(width, height) * .95;
+
+    const radius = Math.min(width, height) * 0.95;
     const centerX = 0;
     const centerY = 0;
     const startAngle = -Math.PI / 2;
@@ -312,46 +210,55 @@
     const amarillo = getComputedStyle(document.documentElement).getPropertyValue('--giro-amarillo').trim();
     const rojo = getComputedStyle(document.documentElement).getPropertyValue('--giro-rojo').trim();
 
-    const colors = {
-      left: verde,
-      center: amarillo,
-      right: rojo
-    };
-    
     ctx.shadowBlur = 6;
     ctx.shadowColor = shadow;
     ctx.shadowOffsetX = 4;
     ctx.shadowOffsetY = 1;
 
+    // sectores (relleno claro)
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
     ctx.lineTo(centerX, centerY);
-    ctx.fillStyle = colors.left;
+    ctx.fillStyle = lcdWhiteOff;
     ctx.fill();
     ctx.strokeStyle = iconDark;
     ctx.lineWidth = 1;
     ctx.stroke();
-    
+
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
     ctx.lineTo(centerX, centerY);
-    ctx.fillStyle = colors.center;
+    ctx.fillStyle = lcdWhiteOff;
     ctx.fill();
     ctx.stroke();
-    
+
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
     ctx.lineTo(centerX, centerY);
-    ctx.fillStyle = colors.right;
+    ctx.fillStyle = lcdWhiteOff;
     ctx.fill();
     ctx.stroke();
-    
+
+    // arco coloreado
+    ctx.shadowBlur = 0;
+    ctx.lineWidth = 3;
+
+    ctx.strokeStyle = verde;
     ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, startAngle, startAngle + sweep);
-    ctx.strokeStyle = iconDark;
-    ctx.lineWidth = 2;
+    ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
     ctx.stroke();
-    
+
+    ctx.strokeStyle = amarillo;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
+    ctx.stroke();
+
+    ctx.strokeStyle = rojo;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
+    ctx.stroke();
+
+    // aguja
     ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
@@ -364,11 +271,11 @@
     } else {
       angle = startAngle + sectorAngle + sectorAngle / 2;
     }
-    
+
     const needleLength = radius * 0.9;
     const needleX = Math.cos(angle) * needleLength;
     const needleY = Math.sin(angle) * needleLength;
-    
+
     ctx.shadowOffsetX = 4;
     ctx.shadowOffsetY = 1;
     ctx.shadowBlur = 4;
@@ -380,19 +287,18 @@
     ctx.lineWidth = 3;
     ctx.stroke();
     ctx.shadowBlur = 0;
-    
+
     ctx.beginPath();
     ctx.arc(0, 0, 6, 0, 2 * Math.PI);
     ctx.fillStyle = digitDark;
     ctx.fill();
-    
+
     ctx.restore();
   }
 
   function renderGiro(index) {
     const w = giroData[index];
     if (!w) return;
-    // Actualizar fecha única también desde GIRO (por si acaso)
     if (dateHeader && w.date) {
       dateHeader.innerHTML = ` WEEK ${w.date} · SCAN ${w.scan}`;
     }
@@ -403,8 +309,6 @@
       { name: "USD",   w: w.usd_w,   m: w.usd_m }
     ];
     giroTableBody.innerHTML = assets.map(a => {
-      //const wClass = a.w > 0 ? 'up' : (a.w < 0 ? 'down' : 'uncertain');
-      //const mClass = a.m > 0 ? 'up' : (a.m < 0 ? 'down' : 'uncertain');
       return `
         <tr>
           <td class="asset">${a.name}</td>
@@ -417,7 +321,6 @@
     drawGauge(direction);
   }
 
-  // Inicializar ambos paneles con el mismo índice
   renderWeek(currentIndex);
   renderGiro(currentIndex);
 })();
