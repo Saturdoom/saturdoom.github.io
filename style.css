@@ -446,15 +446,10 @@ footer {
 }
 
 /* color classes for performance (trend vs previous week) */
-.up {
-  color: var(--giro-verde);  /* verde */
+.value {
+  color: var(--dark);
 }
-.down {
-  color: var(--giro-rojo);  /* rojo */
-}
-.uncertain {
-  color: var(--neutral-grey);
-}
+
 /* ---------- DEFCON SPECIFIC ---------- */
 .defcon-container {
   display: flex;

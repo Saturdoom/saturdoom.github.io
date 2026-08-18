@@ -72,7 +72,7 @@
     tableBody.innerHTML = assets.map(asset => `
       <tr>
         <td class="asset">${asset.name}</td>
-        <td class="${asset.trendClass}">${asset.display}</td>
+        <td class="value">${asset.display}</td>
       </tr>
     `).join('');
 
@@ -399,13 +399,13 @@
       { name: "USD",   w: w.usd_w,   m: w.usd_m }
     ];
     giroTableBody.innerHTML = assets.map(a => {
-      const wClass = a.w > 0 ? 'up' : (a.w < 0 ? 'down' : 'uncertain');
-      const mClass = a.m > 0 ? 'up' : (a.m < 0 ? 'down' : 'uncertain');
+      //const wClass = a.w > 0 ? 'up' : (a.w < 0 ? 'down' : 'uncertain');
+      //const mClass = a.m > 0 ? 'up' : (a.m < 0 ? 'down' : 'uncertain');
       return `
         <tr>
           <td class="asset">${a.name}</td>
-          <td class="${wClass}">${a.w > 0 ? '+' : ''}${a.w}%</td>
-          <td class="${mClass}">${a.m > 0 ? '+' : ''}${a.m}%</td>
+          <td class="value">${a.w > 0 ? '+' : ''}${a.w}%</td>
+          <td class="value">${a.m > 0 ? '+' : ''}${a.m}%</td>
         </tr>
       `;
     }).join('');
