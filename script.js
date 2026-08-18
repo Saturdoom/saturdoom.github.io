@@ -308,10 +308,14 @@
     const sweep = Math.PI;
     const sectorAngle = sweep / 3;
 
+    const verde = getComputedStyle(document.documentElement).getPropertyValue('--giro-verde').trim();
+    const amarillo = getComputedStyle(document.documentElement).getPropertyValue('--giro-amarillo').trim();
+    const rojo = getComputedStyle(document.documentElement).getPropertyValue('--giro-rojo').trim();
+
     const colors = {
-      left: lcdWhiteOff,
-      center: lcdWhiteOff,
-      right: lcdWhiteOff
+      left: verde,
+      center: amarillo,
+      right: rojo
     };
     
     ctx.shadowBlur = 6;
