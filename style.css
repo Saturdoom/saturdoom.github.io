@@ -51,6 +51,9 @@
   --giro-amarillo:#ffff88 ;
   --giro-verde: #88ff88;
   --defcon-azul: #1a3a5a;
+
+  --highlight-opacity: 0.35;
+  --highlight-color: var(--lcd-white-on);
   
 }
 
