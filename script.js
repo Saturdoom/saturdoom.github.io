@@ -4,7 +4,7 @@
   // ============================================================
   // Agrega más semanas aquí (más recientes primero)
   const weeksData = [
-    { date: "2026-08-10", scan: "08-15", energy: -7.67, tech: 3.09},
+    { date: "2026-08-10", scan: "08-15", energy: 7.67, tech: -3.09},
     { date: "2026-08-03", scan: "08-08", energy: -3.44, tech: 7.20},
     { date: "2026-07-27", scan: "08-01", energy: -0.12, tech: -0.30},
     { date: "2026-07-20", scan: "07-25", energy: 3.36, tech: 0.17},
