@@ -447,12 +447,12 @@ footer {
 
 /* color classes for performance (trend vs previous week) */
 .up {
-  color: var(--dark);
+  color: var(--giro-verde);  /* verde */
 }
 .down {
-  color: var(--dark);
+  color: var(--giro-rojo);  /* rojo */
 }
-.neutral {
+.uncertain {
   color: var(--neutral-grey);
 }
 /* ---------- DEFCON SPECIFIC ---------- */
