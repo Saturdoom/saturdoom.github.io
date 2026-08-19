@@ -201,14 +201,16 @@
     ) || 0.35;
 
     ctx.globalAlpha = highlightOpacity;
+    
+    ctx.save();
+    // Prueba
     const grad = ctx.createLinearGradient(0, 0, width, height);
     grad.addColorStop(0, highlightColor);
     grad.addColorStop(1, 'transparent');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
     ctx.globalAlpha = 1;
-    
-    ctx.save();
+
     const yOffset = 76;
     ctx.translate(width / 2, height / 2 + yOffset);
     ctx.rotate(-Math.PI / 2);
