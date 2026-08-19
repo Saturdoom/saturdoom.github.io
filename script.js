@@ -204,10 +204,10 @@
     
     ctx.save();
     // Prueba
-    const gradPrueba = ctx.createLinearGradient(0, 0, width * 0.6, height * 0.4);
-    gradPrueba.addColorStop(0, 'rgba(200, 100, 255, 0.5)'); // púrpura visible
-    gradPrueba.addColorStop(1, 'rgba(200, 100, 255, 0)');
-    ctx.fillStyle = gradPrueba;
+    const grad = ctx.createLinearGradient(0, 0, width * 0.6, height * 0.4);
+    grad.addColorStop(0, highlightColor);
+    grad.addColorStop(1, 'rgba(200, 100, 255, 0)');
+    ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
     ctx.restore();
     //const grad = ctx.createLinearGradient(0, 0, width, height);
