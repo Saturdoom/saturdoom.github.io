@@ -1,10 +1,10 @@
 (function() {
   // ============================================================
-  // DEFCON PANEL (Energy & Technology)
+  // DEFCON PANEL (Energy & Technology) – Datos y lógica
   // ============================================================
-  const weeksData = [
-    //{ date: "2026-08-10", scan: "08-15", energy: 7.67, tech: -3.09},
 
+  // Datos semanales: energy y tech en porcentaje
+  const weeksData = [
     { date: "2026-08-10", scan: "08-15", energy: 7.67, tech: 1.09},
     { date: "2026-08-03", scan: "08-08", energy: -3.44, tech: 7.20},
     { date: "2026-07-27", scan: "08-01", energy: -0.12, tech: -0.30},
@@ -36,13 +36,17 @@
     { date: "2026-01-26", scan: "01-31", energy: 3.79, tech: -0.84},
   ];
 
-  let currentIndex = 0;
+  let currentIndex = 0; // índice de la semana actual
 
+  // Referencias a elementos del DOM
   const dateHeader = document.getElementById('weekDateHeader');
   const tableBody = document.getElementById('weekTableBody');
   const prevBtn = document.getElementById('prevWeekBtn');
   const nextBtn = document.getElementById('nextWeekBtn');
 
+  // ------------------------------------------------------------
+  // getTrendClass – devuelve 'up', 'down' o 'uncertain' según la tendencia
+  // ------------------------------------------------------------
   function getTrendClass(currentVal, prevVal) {
     if (prevVal === undefined) return 'uncertain';
     if (currentVal > prevVal) return 'up';
@@ -50,6 +54,9 @@
     return 'uncertain';
   }
 
+  // ------------------------------------------------------------
+  // renderWeek – pinta la tabla DEFCON y el nivel de amenaza
+  // ------------------------------------------------------------
   function renderWeek(index) {
     const week = weeksData[index];
     if (!week) return;
@@ -58,16 +65,21 @@
     const energyTrend = getTrendClass(week.energy, prevWeek?.energy);
     const techTrend = getTrendClass(week.tech, prevWeek?.tech);
 
+    // Cabecera con fecha
     dateHeader.innerHTML = ` WEEK ${week.date} · SCAN ${week.scan}`;
+
+    // Formateo de los valores con signo +
     const energyDisplay = (week.energy > 0 ? `+${week.energy}%` : `${week.energy}%`);
     const techDisplay = (week.tech > 0 ? `+${week.tech}%` : `${week.tech}%`);
 
+    // Ordenar de mayor a menor valor
     const assets = [
       { name: "ENERGY", value: week.energy, display: energyDisplay, trendClass: energyTrend },
       { name: "TECHNOLOGY", value: week.tech, display: techDisplay, trendClass: techTrend }
     ];
     assets.sort((a, b) => b.value - a.value);
 
+    // Generar filas de la tabla (solo una celda de valor)
     tableBody.innerHTML = assets.map(asset => `
       <tr>
         <td class="asset">${asset.name}</td>
@@ -75,6 +87,7 @@
       </tr>
     `).join('');
 
+    // Cálculo del nivel DEFCON (1 a 5)
     const energyVal = week.energy;
     const techVal = week.tech;
     let level = 3;
@@ -84,6 +97,7 @@
     else if (techVal > 0 && energyVal < 0) level = 4;
     else level = 5;
 
+    // Resaltar el nivel activo
     const allLevels = document.querySelectorAll('.defcon-level');
     allLevels.forEach(el => el.classList.remove('active'));
     const activeLevel = document.querySelector(`.defcon-level[data-level="${level}"]`);
@@ -92,6 +106,9 @@
     updateButtons();
   }
 
+  // ------------------------------------------------------------
+  // updateButtons – habilita/deshabilita los botones de navegación
+  // ------------------------------------------------------------
   function updateButtons() {
     if (currentIndex === weeksData.length - 1) {
       prevBtn.setAttribute('disabled', 'disabled');
@@ -109,6 +126,9 @@
     }
   }
 
+  // ------------------------------------------------------------
+  // Navegación entre semanas
+  // ------------------------------------------------------------
   function prevWeek() {
     if (currentIndex + 1 < weeksData.length) {
       currentIndex++;
@@ -128,6 +148,9 @@
   prevBtn.addEventListener('click', prevWeek);
   nextBtn.addEventListener('click', nextWeek);
 
+  // ------------------------------------------------------------
+  // Carga inicial con parámetro ?week=YYYY-MM-DD
+  // ------------------------------------------------------------
   function getIndexByDate(dateStr) {
     return weeksData.findIndex(week => week.date === dateStr);
   }
@@ -139,10 +162,10 @@
   }
 
   // ============================================================
-  // GIRO PANEL
+  // GIRO PANEL – Datos de Brent, WTI, USD y el gráfico VU
   // ============================================================
+
   const giroData = [
-//    { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: -5.40, usd_w: 0.7 },
     { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: 5.40, usd_w: 0.07 },
     { date: "2026-08-03", scan: "08-08", brent_w: -7.29, wti_w: -7.67, usd_w: -0.20 },
     { date: "2026-07-27", scan: "08-01", brent_w: -6.88, wti_w: -5.2, usd_w: -1.65 },
@@ -176,12 +199,15 @@
 
   const giroTableBody = document.getElementById('giroTableBody');
 
-  // Colores desde CSS
+  // Colores y sombras desde variables CSS (definidas en :root)
   const lcdWhiteOff = "#c8c8b8";
   const iconDark = "#646464";
   const digitDark = '#010501';
   const shadow = 'rgba(100, 100, 100, 0.6)';
 
+  // ------------------------------------------------------------
+  // getGiroDirection – determina left, right o up según los valores semanales
+  // ------------------------------------------------------------
   function getGiroDirection(brent_w, wti_w, usd_w) {
     if (brent_w > 1.0 && usd_w > 0.5 && wti_w < -0.5) return 'right';
     if (brent_w < -0.5 && usd_w < -0.5 && wti_w > 1.0) return 'left';
@@ -189,7 +215,8 @@
   }
 
   // ============================================================
-  // drawGauge – estilo VU con luz desde arriba-izquierda
+  // drawGauge – Dibuja el medidor estilo VU con arco de colores,
+  //            luz desde arriba-izquierda y aguja nítida con sombra.
   // ============================================================
   function drawGauge(direction) {
     const canvas = document.getElementById('gaugeCanvas');
@@ -198,34 +225,35 @@
     const width = canvas.width;
     const height = canvas.height;
 
-    // 1) Fondo claro
+    // ---------- 1) Fondo claro de la pantalla ----------
     ctx.fillStyle = lcdWhiteOff;
     ctx.fillRect(0, 0, width, height);
 
-    // 2) Transformación para el semicírculo
+    // ---------- 2) Transformación para el semicírculo ----------
+    // Movemos el origen al centro del semicírculo y rotamos para que el arco empiece en la izquierda.
     ctx.save();
-    const yOffset = 76;
+    const yOffset = 76; // ajuste vertical para centrar
     ctx.translate(width / 2, height / 2 + yOffset);
     ctx.rotate(-Math.PI / 2);
 
     const radius = Math.min(width, height) * 0.95;
     const centerX = 0;
     const centerY = 0;
-    const startAngle = -Math.PI / 2;
-    const sweep = Math.PI;
-    const sectorAngle = sweep / 3;
+    const startAngle = -Math.PI / 2; // comienza en el extremo izquierdo
+    const sweep = Math.PI;           // medio círculo
+    const sectorAngle = sweep / 3;   // cada tercio mide 60°
 
-    // Colores del arco desde CSS
+    // Colores del arco desde CSS (variables)
     const verde = getComputedStyle(document.documentElement).getPropertyValue('--giro-verde').trim();
     const amarillo = getComputedStyle(document.documentElement).getPropertyValue('--giro-amarillo').trim();
     const rojo = getComputedStyle(document.documentElement).getPropertyValue('--giro-rojo').trim();
 
-    // 3) Sectores (relleno claro con borde)
+    // ---------- 3) Sectores (relleno claro con borde oscuro) ----------
     ctx.shadowBlur = 0;
     ctx.strokeStyle = iconDark;
     ctx.lineWidth = 1;
 
-    // Sector izquierdo
+    // Sector izquierdo (TECH)
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
     ctx.lineTo(centerX, centerY);
@@ -233,7 +261,7 @@
     ctx.fill();
     ctx.stroke();
 
-    // Sector central
+    // Sector central (UNCERTAIN)
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
     ctx.lineTo(centerX, centerY);
@@ -241,7 +269,7 @@
     ctx.fill();
     ctx.stroke();
 
-    // Sector derecho
+    // Sector derecho (ENERGY)
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
     ctx.lineTo(centerX, centerY);
@@ -249,47 +277,45 @@
     ctx.fill();
     ctx.stroke();
 
-    // 4) Arco coloreado (verde – amarillo – rojo)
+    // ---------- 4) Arco coloreado (borde exterior de cada tercio) ----------
     ctx.shadowBlur = 0;
     ctx.lineWidth = 3;
 
+    // Tercio izquierdo – verde
     ctx.strokeStyle = verde;
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
     ctx.stroke();
 
+    // Tercio central – amarillo
     ctx.strokeStyle = amarillo;
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
     ctx.stroke();
 
+    // Tercio derecho – rojo
     ctx.strokeStyle = rojo;
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
     ctx.stroke();
 
-    // 5) Degradado de luz (sobre sectores y arco, pero antes de la aguja)
-    // Usamos una variable CSS para la opacidad y el color se toma del fondo claro.
+    // ---------- 5) Degradado de luz (efecto de iluminación desde arriba-izquierda) ----------
+    // Se dibuja sobre los sectores y el arco, pero antes de la aguja para que no la opaque.
     const highlightOpacity = parseFloat(
       getComputedStyle(document.documentElement).getPropertyValue('--highlight-opacity').trim()
     ) || 0.35;
-    const lightColor = lcdWhiteOff; // o podrías usar --lcd-white-on
 
-    // El degradado se dibuja en coordenadas del semicírculo (centro en 0,0)
     ctx.save();
     const grad = ctx.createLinearGradient(-radius * 0.5, -radius * 0.5, radius * 0.3, radius * 0.3);
     grad.addColorStop(0, `rgba(255,255,255,${highlightOpacity})`);
     grad.addColorStop(1, 'rgba(255,255,255,0)');
     ctx.fillStyle = grad;
-    // Rellenamos un rectángulo que cubra el semicírculo (usamos un cuadrado)
+    // Rellenamos un cuadrado que cubra todo el semicírculo
     ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
     ctx.restore();
 
-    // 6) Aguja (dibujada encima de todo, con su sombra)
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-
+    // ---------- 6) Aguja (dibujada encima de todo, con sombra proyectada) ----------
+    // Primero calculamos el ángulo según la dirección (left, right o up)
     let angle;
     if (direction === 'left') {
       angle = startAngle + sectorAngle / 2;
@@ -303,7 +329,9 @@
     const needleX = Math.cos(angle) * needleLength;
     const needleY = Math.sin(angle) * needleLength;
 
-    // Sombra solo para la aguja
+    // 6a) Sombra de la aguja (se dibuja con blur y offset para dar profundidad)
+    // La sombra se dibuja con el mismo trazo pero con shadowBlur activo.
+    ctx.save();
     ctx.shadowOffsetX = 4;
     ctx.shadowOffsetY = 1;
     ctx.shadowBlur = 4;
@@ -314,17 +342,32 @@
     ctx.strokeStyle = digitDark;
     ctx.lineWidth = 3;
     ctx.stroke();
-    ctx.shadowBlur = 0;
+    ctx.restore();
 
-    // Círculo central
+    // 6b) Aguja nítida (se dibuja encima de la sombra sin blur, para que la línea se vea perfectamente definida)
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(needleX, needleY);
+    ctx.strokeStyle = digitDark;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Círculo central (sin sombra)
     ctx.beginPath();
     ctx.arc(0, 0, 6, 0, 2 * Math.PI);
     ctx.fillStyle = digitDark;
     ctx.fill();
 
-    ctx.restore(); // restaura transformación
+    // Restaurar la transformación global del canvas
+    ctx.restore();
   }
 
+  // ------------------------------------------------------------
+  // renderGiro – actualiza la tabla y llama a drawGauge
+  // ------------------------------------------------------------
   function renderGiro(index) {
     const w = giroData[index];
     if (!w) return;
@@ -332,6 +375,7 @@
       dateHeader.innerHTML = ` WEEK ${w.date} · SCAN ${w.scan}`;
     }
 
+    // Generar filas de la tabla de commodities (solo Perf W)
     const assets = [
       { name: "BRENT", w: w.brent_w },
       { name: "WTI",   w: w.wti_w },
@@ -350,6 +394,7 @@
     drawGauge(direction);
   }
 
+  // ---------- Inicialización ----------
   renderWeek(currentIndex);
   renderGiro(currentIndex);
 })();
