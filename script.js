@@ -3,7 +3,9 @@
   // DEFCON PANEL (Energy & Technology)
   // ============================================================
   const weeksData = [
-    { date: "2026-08-10", scan: "08-15", energy: 7.67, tech: -3.09},
+    //{ date: "2026-08-10", scan: "08-15", energy: 7.67, tech: -3.09},
+
+    { date: "2026-08-10", scan: "08-15", energy: 7.67, tech: 1.09},
     { date: "2026-08-03", scan: "08-08", energy: -3.44, tech: 7.20},
     { date: "2026-07-27", scan: "08-01", energy: -0.12, tech: -0.30},
     { date: "2026-07-20", scan: "07-25", energy: 3.36, tech: 0.17},
@@ -140,7 +142,8 @@
   // GIRO PANEL
   // ============================================================
   const giroData = [
-    { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: -5.40, usd_w: 0.7 },
+//    { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: -5.40, usd_w: 0.7 },
+    { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: 5.40, usd_w: 0.07 },
     { date: "2026-08-03", scan: "08-08", brent_w: -7.29, wti_w: -7.67, usd_w: -0.20 },
     { date: "2026-07-27", scan: "08-01", brent_w: -6.88, wti_w: -5.2, usd_w: -1.65 },
     { date: "2026-07-20", scan: "07-25", brent_w: 9.85, wti_w: 8.27, usd_w: 0.71 },
