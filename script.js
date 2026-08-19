@@ -194,6 +194,43 @@
     ctx.fillStyle = lcdWhiteOff;
     ctx.fillRect(0, 0, width, height);
 
+    // aguja
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+    let angle;
+    if (direction === 'left') {
+      angle = startAngle + sectorAngle / 2;
+    } else if (direction === 'right') {
+      angle = startAngle + 2 * sectorAngle + sectorAngle / 2;
+    } else {
+      angle = startAngle + sectorAngle + sectorAngle / 2;
+    }
+
+    const needleLength = radius * 0.9;
+    const needleX = Math.cos(angle) * needleLength;
+    const needleY = Math.sin(angle) * needleLength;
+
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = shadow;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(needleX, needleY);
+    ctx.strokeStyle = digitDark;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    ctx.beginPath();
+    ctx.arc(0, 0, 6, 0, 2 * Math.PI);
+    ctx.fillStyle = digitDark;
+    ctx.fill();
+
+    ctx.restore();
+
     // Degradado de luz desde arriba-izquierda
     const highlightColor = getComputedStyle(document.documentElement).getPropertyValue('--lcd-white-on').trim();
     const highlightOpacity = parseFloat(
@@ -203,6 +240,9 @@
     ctx.globalAlpha = highlightOpacity;
     
     ctx.save();
+
+
+
     // Prueba
     const grad = ctx.createLinearGradient(0, 0, width * 0.6, height * 0.4);
     grad.addColorStop(0, highlightColor);
@@ -281,42 +321,6 @@
     ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
     ctx.stroke();
 
-    // aguja
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-
-    let angle;
-    if (direction === 'left') {
-      angle = startAngle + sectorAngle / 2;
-    } else if (direction === 'right') {
-      angle = startAngle + 2 * sectorAngle + sectorAngle / 2;
-    } else {
-      angle = startAngle + sectorAngle + sectorAngle / 2;
-    }
-
-    const needleLength = radius * 0.9;
-    const needleX = Math.cos(angle) * needleLength;
-    const needleY = Math.sin(angle) * needleLength;
-
-    ctx.shadowOffsetX = 4;
-    ctx.shadowOffsetY = 1;
-    ctx.shadowBlur = 4;
-    ctx.shadowColor = shadow;
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(needleX, needleY);
-    ctx.strokeStyle = digitDark;
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    ctx.beginPath();
-    ctx.arc(0, 0, 6, 0, 2 * Math.PI);
-    ctx.fillStyle = digitDark;
-    ctx.fill();
-
-    ctx.restore();
   }
 
   function renderGiro(index) {
