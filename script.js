@@ -201,7 +201,7 @@
     ) || 0.35;
 
     ctx.globalAlpha = highlightOpacity;
-    const grad = ctx.createLinearGradient(0, 0, width * 0.6, height * 0.4);
+    const grad = ctx.createLinearGradient(0, 0, width, height);
     grad.addColorStop(0, highlightColor);
     grad.addColorStop(1, 'transparent');
     ctx.fillStyle = grad;
