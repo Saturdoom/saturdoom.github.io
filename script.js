@@ -173,6 +173,7 @@
 
   const giroTableBody = document.getElementById('giroTableBody');
 
+  // Colores desde CSS
   const lcdWhiteOff = "#c8c8b8";
   const iconDark = "#646464";
   const digitDark = '#010501';
@@ -184,6 +185,9 @@
     return 'up';
   }
 
+  // ============================================================
+  // drawGauge – estilo VU con luz desde arriba-izquierda
+  // ============================================================
   function drawGauge(direction) {
     const canvas = document.getElementById('gaugeCanvas');
     if (!canvas) return;
@@ -191,72 +195,12 @@
     const width = canvas.width;
     const height = canvas.height;
 
+    // 1) Fondo claro
     ctx.fillStyle = lcdWhiteOff;
     ctx.fillRect(0, 0, width, height);
 
-    // aguja
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-
-    let angle;
-    if (direction === 'left') {
-      angle = startAngle + sectorAngle / 2;
-    } else if (direction === 'right') {
-      angle = startAngle + 2 * sectorAngle + sectorAngle / 2;
-    } else {
-      angle = startAngle + sectorAngle + sectorAngle / 2;
-    }
-
-    const needleLength = radius * 0.9;
-    const needleX = Math.cos(angle) * needleLength;
-    const needleY = Math.sin(angle) * needleLength;
-
-    ctx.shadowOffsetX = 4;
-    ctx.shadowOffsetY = 1;
-    ctx.shadowBlur = 4;
-    ctx.shadowColor = shadow;
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(needleX, needleY);
-    ctx.strokeStyle = digitDark;
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    ctx.beginPath();
-    ctx.arc(0, 0, 6, 0, 2 * Math.PI);
-    ctx.fillStyle = digitDark;
-    ctx.fill();
-
-    ctx.restore();
-
-    // Degradado de luz desde arriba-izquierda
-    const highlightColor = getComputedStyle(document.documentElement).getPropertyValue('--lcd-white-on').trim();
-    const highlightOpacity = parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue('--highlight-opacity').trim()
-    ) || 0.5;
-
-    ctx.globalAlpha = highlightOpacity;
-    
+    // 2) Transformación para el semicírculo
     ctx.save();
-
-
-
-    // Prueba
-    const grad = ctx.createLinearGradient(0, 0, width * 0.6, height * 0.4);
-    grad.addColorStop(0, highlightColor);
-    grad.addColorStop(1, 'rgba(200, 100, 255, 0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, width, height);
-    ctx.restore();
-    //const grad = ctx.createLinearGradient(0, 0, width, height);
-    //grad.addColorStop(0, highlightColor);
-    //grad.addColorStop(1, 'transparent');
-    //ctx.fillStyle = grad;
-    //ctx.fillRect(0, 0, width, height);
-    //ctx.globalAlpha = 1;
-
     const yOffset = 76;
     ctx.translate(width / 2, height / 2 + yOffset);
     ctx.rotate(-Math.PI / 2);
@@ -268,26 +212,25 @@
     const sweep = Math.PI;
     const sectorAngle = sweep / 3;
 
+    // Colores del arco desde CSS
     const verde = getComputedStyle(document.documentElement).getPropertyValue('--giro-verde').trim();
     const amarillo = getComputedStyle(document.documentElement).getPropertyValue('--giro-amarillo').trim();
     const rojo = getComputedStyle(document.documentElement).getPropertyValue('--giro-rojo').trim();
 
+    // 3) Sectores (relleno claro con borde)
     ctx.shadowBlur = 0;
-    //ctx.shadowBlur = 6;
-    //ctx.shadowColor = shadow;
-    //ctx.shadowOffsetX = 4;
-    //ctx.shadowOffsetY = 1;
+    ctx.strokeStyle = iconDark;
+    ctx.lineWidth = 1;
 
-    // sectores (relleno claro)
+    // Sector izquierdo
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + sectorAngle);
     ctx.lineTo(centerX, centerY);
     ctx.fillStyle = lcdWhiteOff;
     ctx.fill();
-    ctx.strokeStyle = iconDark;
-    ctx.lineWidth = 1;
     ctx.stroke();
 
+    // Sector central
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + sectorAngle, startAngle + 2 * sectorAngle);
     ctx.lineTo(centerX, centerY);
@@ -295,6 +238,7 @@
     ctx.fill();
     ctx.stroke();
 
+    // Sector derecho
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
     ctx.lineTo(centerX, centerY);
@@ -302,7 +246,7 @@
     ctx.fill();
     ctx.stroke();
 
-    // arco coloreado
+    // 4) Arco coloreado (verde – amarillo – rojo)
     ctx.shadowBlur = 0;
     ctx.lineWidth = 3;
 
@@ -321,6 +265,61 @@
     ctx.arc(centerX, centerY, radius, startAngle + 2 * sectorAngle, startAngle + 3 * sectorAngle);
     ctx.stroke();
 
+    // 5) Degradado de luz (sobre sectores y arco, pero antes de la aguja)
+    // Usamos una variable CSS para la opacidad y el color se toma del fondo claro.
+    const highlightOpacity = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--highlight-opacity').trim()
+    ) || 0.35;
+    const lightColor = lcdWhiteOff; // o podrías usar --lcd-white-on
+
+    // El degradado se dibuja en coordenadas del semicírculo (centro en 0,0)
+    ctx.save();
+    const grad = ctx.createLinearGradient(-radius * 0.5, -radius * 0.5, radius * 0.3, radius * 0.3);
+    grad.addColorStop(0, `rgba(255,255,255,${highlightOpacity})`);
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    // Rellenamos un rectángulo que cubra el semicírculo (usamos un cuadrado)
+    ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
+    ctx.restore();
+
+    // 6) Aguja (dibujada encima de todo, con su sombra)
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+    let angle;
+    if (direction === 'left') {
+      angle = startAngle + sectorAngle / 2;
+    } else if (direction === 'right') {
+      angle = startAngle + 2 * sectorAngle + sectorAngle / 2;
+    } else {
+      angle = startAngle + sectorAngle + sectorAngle / 2;
+    }
+
+    const needleLength = radius * 0.9;
+    const needleX = Math.cos(angle) * needleLength;
+    const needleY = Math.sin(angle) * needleLength;
+
+    // Sombra solo para la aguja
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = shadow;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(needleX, needleY);
+    ctx.strokeStyle = digitDark;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Círculo central
+    ctx.beginPath();
+    ctx.arc(0, 0, 6, 0, 2 * Math.PI);
+    ctx.fillStyle = digitDark;
+    ctx.fill();
+
+    ctx.restore(); // restaura transformación
   }
 
   function renderGiro(index) {
@@ -331,9 +330,9 @@
     }
 
     const assets = [
-      { name: "BRENT", w: w.brent_w, m: w.brent_m },
-      { name: "WTI",   w: w.wti_w,   m: w.wti_m },
-      { name: "USD",   w: w.usd_w,   m: w.usd_m }
+      { name: "BRENT", w: w.brent_w },
+      { name: "WTI",   w: w.wti_w },
+      { name: "USD",   w: w.usd_w }
     ];
     giroTableBody.innerHTML = assets.map(a => {
       return `
