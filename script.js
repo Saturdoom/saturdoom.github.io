@@ -198,7 +198,7 @@
     const highlightColor = getComputedStyle(document.documentElement).getPropertyValue('--lcd-white-on').trim();
     const highlightOpacity = parseFloat(
       getComputedStyle(document.documentElement).getPropertyValue('--highlight-opacity').trim()
-    ) || 0.35;
+    ) || 0.5;
 
     ctx.globalAlpha = highlightOpacity;
     
