@@ -5,7 +5,7 @@
 
   // Datos semanales: energy y tech en porcentaje
   const weeksData = [
-    { date: "2026-09-07", scan: "09-12", energy: 0.00, tech: 0.00},
+    { date: "2026-09-07", scan: "09-12", energy: 1.69, tech: 0.21},
     { date: "2026-08-31", scan: "09-05", energy: 2.20, tech: 0.86},
     { date: "2026-08-24", scan: "08-29", energy: -1.51, tech: 1.30},
     { date: "2026-08-17", scan: "08-22", energy: 2.79, tech: -3.53},
