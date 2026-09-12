@@ -5,6 +5,7 @@
 
   // Datos semanales: energy y tech en porcentaje
   const weeksData = [
+    { date: "2026-09-07", scan: "09-12", energy: 0.00, tech: 0.00},
     { date: "2026-08-31", scan: "09-05", energy: 2.20, tech: 0.86},
     { date: "2026-08-24", scan: "08-29", energy: -1.51, tech: 1.30},
     { date: "2026-08-17", scan: "08-22", energy: 2.79, tech: -3.53},
@@ -169,12 +170,13 @@
   // ============================================================
 
   const giroData = [
-    { date: "2026-08-31", scan: "09-05", brent_w: 9.69, wti_w: -0.54, usd_w: 2.20 },
+    { date: "2026-09-07", scan: "09-12", brent_w: 8,45, wti_w: 9.30, usd_w: -0.06 },
+    { date: "2026-08-31", scan: "09-05", brent_w: 7.80, wti_w: 9.69, usd_w: -0.54 },
     { date: "2026-08-24", scan: "08-29", brent_w: -5.38, wti_w: -4.20, usd_w: 0.91 },
     { date: "2026-08-17", scan: "08-22", brent_w: 6.63, wti_w: 5.66, usd_w: -0.87 },
     { date: "2026-08-10", scan: "08-15", brent_w: 5.95, wti_w: 5.40, usd_w: 0.07 },
     { date: "2026-08-03", scan: "08-08", brent_w: -7.29, wti_w: -7.67, usd_w: -0.20 },
-    { date: "2026-07-27", scan: "08-01", brent_w: -6.88, wti_w: -5.2, usd_w: -1.65 },
+    { date: "2026-07-27", scan: "08-01", brent_w: -6.88, wti_w: -5.20, usd_w: -1.65 },
     { date: "2026-07-20", scan: "07-25", brent_w: 9.85, wti_w: 8.27, usd_w: 0.71 },
     { date: "2026-07-13", scan: "07-18", brent_w: 15.91, wti_w: 15.52, usd_w: -0.22 },
     { date: "2026-07-06", scan: "07-11", brent_w: 5.86, wti_w: 3.96, usd_w: 0.11 },
@@ -191,7 +193,7 @@
     { date: "2026-04-20", scan: "04-25", brent_w: 16.54, wti_w: 12.58, usd_w: 0.42 },
     { date: "2026-04-13", scan: "04-18", brent_w: -5.06, wti_w: -13.17, usd_w: -0.56 },
     { date: "2026-04-06", scan: "04-11", brent_w: -13.27, wti_w: -14.09, usd_w: -1.33 },
-    { date: "2026-03-30", scan: "04-04", brent_w: -2.49, wti_w: -14.09, usd_w: -1.33 },
+    { date: "2026-03-30", scan: "04-04", brent_w: -2.49, wti_w: 12.82, usd_w: -0.17 },
     { date: "2026-03-23", scan: "03-28", brent_w: 3.61, wti_w: 3.64, usd_w: 0.93 },
     { date: "2026-03-16", scan: "03-21", brent_w: 11.68, wti_w: 2.71, usd_w: -0.09 },
     { date: "2026-03-09", scan: "03-14", brent_w: 20.76, wti_w: 21.85, usd_w: 1.05 },
