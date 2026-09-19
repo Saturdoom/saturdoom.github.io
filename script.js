@@ -5,6 +5,7 @@
 
   // Datos semanales: energy y tech en porcentaje
   const weeksData = [
+    { date: "2026-09-14", scan: "09-19", energy: -1.27, tech: 1.03},
     { date: "2026-09-07", scan: "09-12", energy: 1.69, tech: 0.21},
     { date: "2026-08-31", scan: "09-05", energy: 2.20, tech: 0.86},
     { date: "2026-08-24", scan: "08-29", energy: -1.51, tech: 1.30},
@@ -170,6 +171,7 @@
   // ============================================================
 
   const giroData = [
+    { date: "2026-09-14", scan: "09-19", brent_w: -5.58, wti_w: -4.58, usd_w: 1.10 },
     { date: "2026-09-07", scan: "09-12", brent_w: 8.45, wti_w: 9.30, usd_w: -0.06 },
     { date: "2026-08-31", scan: "09-05", brent_w: 7.80, wti_w: 9.69, usd_w: -0.54 },
     { date: "2026-08-24", scan: "08-29", brent_w: -5.38, wti_w: -4.20, usd_w: 0.91 },
