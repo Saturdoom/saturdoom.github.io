@@ -69,31 +69,37 @@
 
   <script>
     fetch('navbar.html')
-      .then(response => response.text())
+      .then(r => r.text())
       .then(data => document.getElementById('navbar-placeholder').innerHTML = data)
-      .catch(() => document.getElementById('navbar-placeholder').innerHTML = '<div class="navbar" style="color:white;">⚠️ NAVBAR NOT FOUND - VISIT saturdoom.github.io</div>');
-
-    // Data must match the same weeks used in script.js
-    const weeksData = [
-      { date: "2026-04-13", scan: "04-18", energy: 7.73, tech: -3.85 },
-      // Add more weeks here as they become available
-    ];
-
-    const grid = document.getElementById('archiveGrid');
-    weeksData.forEach(week => {
-      const card = document.createElement('div');
-      card.className = 'archive-card';
-      // Make whole card clickable via JavaScript
-      card.addEventListener('click', () => {
-        window.location.href = `index.html?week=${week.date}`;
+      .catch(() => {
+        document.getElementById('navbar-placeholder').innerHTML =
+          '<div class="navbar" style="color:white;">⚠️ NAVBAR NOT FOUND</div>';
       });
-      card.innerHTML = `
-        <div class="week-date">🪖 WEEK ${week.date}</div>
-        <div class="scan-date">SCAN: ${week.scan}</div>
-        <div class="arrow">→</div>
-      `;
-      grid.appendChild(card);
-    });
+
+    fetch('data/market_data.json')
+      .then(r => r.json())
+      .then(data => {
+        const weeks = data.weeks || [];
+        const grid = document.getElementById('archiveGrid');
+
+        weeks.forEach(week => {
+          const card = document.createElement('div');
+          card.className = 'archive-card';
+          card.addEventListener('click', () => {
+            window.location.href = `index.html?week=${week.date}`;
+          });
+          card.innerHTML = `
+            <div class="week-date">🪖 WEEK ${week.date}</div>
+            <div class="scan-date">SCAN: ${week.scan}</div>
+            <div class="arrow">→</div>
+          `;
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('Failed to load archive', err);
+        document.getElementById('archiveGrid').textContent = '⚠ DATA UNAVAILABLE';
+      });
   </script>
 </body>
 </html>
